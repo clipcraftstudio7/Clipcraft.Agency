@@ -3,4 +3,4 @@ services:
     name: clipcraft-agency
     env: static
     buildCommand: null
-    staticPublishPath: ./iPortfolio
+    staticPublishPath: ./iportfolio
