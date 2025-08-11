@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clipcraft Edits – Services</title>
+    <link href="services.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Tailwind CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"
+      defer
+    ></script>
+    <style>
+      :root {
+        --primary-bg-color: #0d0d0d;
+        --secondary-bg-color: #1a1a1a;
+        --card-bg-color: #222;
+        --text-color: #fff;
+        --light-text-color: #aaa;
+        --accent-color: #ff4d4d;
+        --accent-dark-color: #e60000;
+        --border-color: #333;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--primary-bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(to bottom, #000, transparent);
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      /* Hero Section Styles */
+      .hero {
+        height: 80vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 100px 0 0 50px;
+      }
+
+      .hero-content h1 {
+        font-size: 4.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+      }
+
+      /* Navbar Styles */
+      #navbar {
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 15, 15, 0.95),
+          rgba(25, 25, 25, 0.98)
+        ) !important;
+        backdrop-filter: blur(8px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        height: 50px !important;
+        width: 75% !important;
+        max-width: 850px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        border-radius: 25px !important;
+        margin-top: 10px !important;
+        z-index: 9999 !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+        position: fixed !important;
+        top: 0 !important;
+      }
+
+      .nav-container {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100% !important;
+        width: 100% !important;
+        padding: 0 1rem !important;
+        gap: 2rem !important;
+      }
+
+      .desktop-links {
+        display: flex !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+      }
+
+      .logo-container {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        margin-right: 1.5rem !important;
+        height: 100% !important;
+      }
+
+      .logo-container img {
+        height: 24px !important;
+        width: 24px !important;
+        transition: transform 0.3s ease !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+      }
+
+      .logo-container span {
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        color: white !important;
+      }
+
+      .cta-container {
+        display: flex !important;
+        align-items: center !important;
+        margin-left: 2rem !important;
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+        color: white !important;
+        text-decoration: none;
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.95rem !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: inline-block !important;
+        border-radius: 15px !important;
+      }
+
+      .nav-link:hover {
+        background: rgba(255, 255, 255, 0.05) !important;
+        color: #fb923c !important;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 2px;
+        background-color: #fb923c;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .cta-button {
+        background: linear-gradient(
+          270deg,
+          #f59e0b,
+          #e11d48,
+          #6366f1
+        ) !important;
+        background-size: 200% 200% !important;
+        animation: pulseBorder 2s infinite, gradientMotion 3s ease infinite !important;
+        color: white !important;
+        padding: 0.3rem 1.2rem !important;
+        border-radius: 20px !important;
+        font-weight: 600 !important;
+        font-size: 0.95rem !important;
+        transition: all 0.3s ease !important;
+        text-decoration: none !important;
+        display: inline-block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        border: none !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+        white-space: nowrap !important;
+      }
+
+      .cta-button:hover {
+        transform: scale(1.02) !important;
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2) !important;
+      }
+
+      @keyframes gradientMotion {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      #mobileMenu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: linear-gradient(
+          to bottom,
+          rgba(30, 30, 30, 0.95),
+          rgba(40, 40, 40, 0.98)
+        ) !important;
+        backdrop-filter: blur(8px) !important;
+        border-radius: 0 0 15px 15px !important;
+        z-index: 9999 !important;
+        padding: 0.4rem !important;
+        display: none !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        min-height: 160px !important;
+      }
+
+      #mobileMenu.active {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.2rem !important;
+        animation: slideDown 0.3s ease-out !important;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      #mobileMenu .nav-link {
+        font-size: 0.95rem !important;
+        padding: 0.3rem 0.6rem !important;
+        width: 90% !important;
+        text-align: center !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        transition: all 0.3s ease !important;
+      }
+
+      #mobileMenu .nav-link:hover {
+        background: rgba(255, 255, 255, 0.08) !important;
+        border-radius: 8px !important;
+      }
+
+      #mobileMenu .nav-link:last-child {
+        border-bottom: none !important;
+      }
+
+      #mobileMenu .cta-button {
+        margin-top: 0.4rem !important;
+        width: 85% !important;
+        text-align: center !important;
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.95rem !important;
+        background: linear-gradient(
+          270deg,
+          #f59e0b,
+          #e11d48,
+          #6366f1
+        ) !important;
+        border: none !important;
+        border-radius: 8px !important;
+        transition: transform 0.3s ease !important;
+      }
+
+      #mobileMenu .cta-button:hover {
+        transform: scale(1.02) !important;
+      }
+
+      /* Mobile Menu Button */
+      #menuBtn {
+        background: none;
+        border: none;
+        padding: 0.3rem;
+        display: none;
+      }
+
+      #menuBtn i {
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .desktop-links,
+        .cta-container {
+          display: none !important;
+        }
+
+        .nav-container {
+          justify-content: space-between !important;
+        }
+
+        #menuBtn {
+          display: block !important;
+          cursor: pointer !important;
+          padding: 0.3rem !important;
+        }
+      }
+
+      @media (min-width: 769px) {
+        #menuBtn {
+          display: none !important;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero-content h1 {
+          font-size: 2.5rem !important;
+          margin-bottom: 0.5rem !important;
+        }
+        .hero-content p {
+          font-size: 0.85rem !important;
+          margin-bottom: 0.7rem !important;
+        }
+      }
+      @media (max-width: 768px) {
+        .mobile-home-icon {
+          display: inline-block !important;
+          vertical-align: middle;
+        }
+      }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "service-detail.html"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <nav
+      aria-label="Breadcrumb"
+      style="background: #23272f; padding: 0.7rem 1rem; font-size: 0.98rem"
+    >
+      <ol
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+        style="
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        "
+      >
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <a
+            href="index.html"
+            itemprop="item"
+            style="color: #fb923c; text-decoration: none"
+            ><span itemprop="name">Home</span></a
+          >
+          <meta itemprop="position" content="1" />
+        </li>
+        <li style="color: #aaa">&gt;</li>
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="name" style="color: #fff">Services</span>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 z-[9999] py-1 px-4 shadow-lg">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="logo-container" id="logo">
+          <a
+            href="index.html"
+            class="mobile-home-icon"
+            style="display: none; margin-right: 0.5rem"
+            ><i class="bi bi-list text-xl"></i
+          ></a>
+          <img
+            src="assets/img/my-profile-img.png"
+            alt="Logo"
+            class="h-8 w-8 rounded-full"
+          />
+          <span class="text-lg font-bold">ClipCraft</span>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="desktop-links">
+          <a href="index.html#hero" class="nav-link">Home</a>
+          <a href="service-detail.html" class="nav-link active">Services</a>
+          <a href="project.html" class="nav-link">Projects</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="cta-container">
+          <a href="contact.html" class="cta-button">Hire me</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button
+            id="menuBtn"
+            class="text-white focus:outline-none"
+            style="
+              background: #111;
+              border-radius: 50%;
+              width: 36px;
+              height: 36px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0;
+              border: none;
+            "
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect y="4" width="22" height="2.5" rx="1.25" fill="#fff" />
+              <rect y="9.25" width="22" height="2.5" rx="1.25" fill="#fff" />
+              <rect y="14.5" width="22" height="2.5" rx="1.25" fill="#fff" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="service-detail.html" class="nav-link active">Services</a>
+        <a href="project.html" class="nav-link">Projects</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="contact.html" class="cta-button">Hire me</a>
+      </div>
+    </nav>
+
+    <!-- Add this script right after the navbar -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", function () {
+          mobileMenu.classList.toggle("active");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", function (event) {
+          if (
+            !menuBtn.contains(event.target) &&
+            !mobileMenu.contains(event.target)
+          ) {
+            mobileMenu.classList.remove("active");
+          }
+        });
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>What We Do Best</h1>
+        <p>
+          We transform your raw footage into scroll-stopping, high-retention
+          edits tailored to your brand goals.
+        </p>
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+      </div>
+    </section>
+
+    <!-- Intro & Services Grid -->
+    <section id="services" class="services-intro">
+      <p class="intro-text">
+        At Clipcraft Edits, we offer a wide range of video editing and web
+        design services to bring your creative vision to life.
+      </p>
+
+      <div class="services-grid">
+        <!-- Card 1 -->
+        <div class="service-card">
+          <a href="service-detail.html" class="service-card">
+            <div class="service-icon">
+              <img
+                src="assets/img/random images/pexels-maxavans-5059411.jpg"
+                alt="Picture Services"
+              />
+            </div>
+            <h3>Picture Services</h3>
+            <p>Professional video editing and post-production services</p>
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card">
+          <a href="service-detail.html" class="service-card">
+            <div class="service-icon">
+              <img
+                src="assets/img/random images/pexels-amar-11025646.jpg"
+                alt="VFX Services"
+              />
+            </div>
+            <h3>Visual Effects</h3>
+            <p>Advanced VFX and motion graphics for stunning visuals</p>
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card">
+          <a href="service-detail.html" class="service-card">
+            <div class="service-icon">
+              <img
+                src="assets/img/random images/pexels-lulizler-3165335.jpg"
+                alt="Audio Services Image"
+              />
+            </div>
+            <h3>Audio Services</h3>
+            <p>
+              Ad Jingles, Corporate Audio, Radio Programming, Music Mixing,
+              Audio Conversion, Podcast Editing.
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Specializations Hero -->
+    <section class="video-hero">
+      <div class="hero-content">
+        <h2>Create Without Limits!</h2>
+        <p>
+          We turn raw footage into scroll-stopping content and design websites
+          that convert clicks into clients.
+        </p>
+      </div>
+    </section>
+
+    <!-- Video Specializations -->
+    <section class="video-specs">
+      <ul>
+        <li>Corporate Videos</li>
+        <li>Commercials & Ads</li>
+        <li>Short-form Social Media</li>
+        <li>Events & Weddings</li>
+        <li>Tutorials & Explainers</li>
+        <li>Documentary-Style</li>
+      </ul>
+    </section>
+
+    <!-- Image Slider -->
+    <section class="image-slider">
+      <div class="slider-frame">
+        <div class="slider-track">
+          <img
+            src="assets/img/random images/pexels-alexfu-1188750.jpg"
+            alt="Showcase 1"
+          />
+          <img
+            src="assets/img/random images/pexels-cottonbro-3296434 (1).jpg"
+            alt="Showcase 2"
+          />
+          <img
+            src="assets/img/random images/pexels-gezerasph-25753692.jpg"
+            alt="Showcase 3"
+          />
+          <img
+            src="assets/img/random images/pexels-zion-14879065.jpg"
+            alt="Showcase 4"
+          />
+          <img
+            src="assets/img/random images/pexels-alexfu-1188751.jpg"
+            alt="Showcase 5"
+          />
+          <img
+            src="assets/img/random images/pexels-pixabay-257904.jpg"
+            alt="Showcase 6"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Package (VFX & Color) -->
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Our Services - ClipCraft</title>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Syne:wght@700&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            font-family: "Syne", sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+          }
+
+          .services-section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+          }
+
+          .mini-heading {
+            color: #fb923c;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+          }
+
+          .main-heading {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(90deg, #facc15, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+
+          .services-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 20px;
+          }
+
+          .service-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+          }
+
+          .service-box:hover {
+            transform: translateY(-5px);
+          }
+
+          .service-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+          }
+
+          .service-content {
+            padding: 1.5rem;
+          }
+
+          .service-content h3 {
+            color: #fb923c;
+            margin-bottom: 1rem;
+          }
+
+          .service-content ul {
+            list-style: none;
+            padding: 0;
+          }
+
+          .service-content li {
+            margin-bottom: 0.5rem;
+            color: #ccc;
+          }
+
+          .service-link {
+            text-decoration: none;
+            color: inherit;
+          }
+
+          @media (max-width: 768px) {
+            .services-wrapper {
+              grid-template-columns: 1fr;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <section class="services-section">
+          <h4 class="mini-heading">OUR SERVICES</h4>
+          <h2 class="main-heading">Unlock Finesse with Our Services</h2>
+
+          <div class="services-wrapper">
+            <!-- Service 1 -->
+            <a href="#" class="service-link">
+              <div class="service-box">
+                <img
+                  src="assets/img/random images/pexels-amar-13797094.jpg"
+                  alt="Picture service"
+                />
+                <div class="service-content">
+                  <h3>Picture Services</h3>
+                  <ul>
+                    <li>✔️ Conform</li>
+                    <li>✔️ Color Correction</li>
+                    <li>✔️ Title</li>
+                    <li>✔️ Caption</li>
+                    <li>✔️ Dubbing</li>
+                    <li>✔️ Editorial</li>
+                    <li>✔️ Storyboard</li>
+                  </ul>
+                </div>
+              </div>
+            </a>
+
+            <!-- Service 2 -->
+            <a href="#" class="service-link">
+              <div class="service-box">
+                <img
+                  src="assets/img/random images/pexels-ron-lach-8102674.jpg"
+                  alt="Visual Effects service"
+                />
+                <div class="service-content">
+                  <h3>Visual Effects</h3>
+                  <ul>
+                    <li>✔️ Rotoscoping</li>
+                    <li>✔️ Motion Tracking</li>
+                    <li>✔️ Chroma Removal</li>
+                    <li>✔️ Motion Graphics</li>
+                    <li>✔️ Beauty</li>
+                    <li>✔️ Cleanup</li>
+                    <li>✔️ Animation</li>
+                  </ul>
+                </div>
+              </div>
+            </a>
+
+            <!-- Service 3 -->
+            <a href="#" class="service-link">
+              <div class="service-box">
+                <img
+                  src="assets/img/random images/pexels-cottonbro-3894535.jpg"
+                  alt="Audio service"
+                />
+                <div class="service-content">
+                  <h3>Audio Services</h3>
+                  <ul>
+                    <li>✔️ Ad Jingle Creation</li>
+                    <li>✔️ Corporate Audio</li>
+                    <li>✔️ Radio Program</li>
+                    <li>✔️ Music Mixing</li>
+                    <li>✔️ Audio Conversion</li>
+                    <li>✔️ Podcast Editing</li>
+                    <li>✔️ Adobe Audition</li>
+                  </ul>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+      </body>
+    </html>
+
+    <section class="faq">
+      <h2>📌 Frequently Asked Questions</h2>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            ⏱️ How long does a typical project take?
+          </button>
+          <div class="accordion-body">
+            <p>
+              Turnaround depends on scope—it can range from 2 days for single
+              short-form videos to 2 weeks for larger projects.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            📂 What formats do you accept?
+          </button>
+          <div class="accordion-body">
+            <p>
+              We accept MP4, MOV, RAW camera files, audio stems. If you're
+              unsure, just ask!
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">♻️ Can I request revisions?</button>
+          <div class="accordion-body">
+            <p>
+              Absolutely! Our standard includes up to 2 rounds of revisions, and
+              you can add more if needed with transparent pricing.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            💬 How do I communicate with your team?
+          </button>
+          <div class="accordion-body">
+            <p>
+              We're available via email, Zoom, and WhatsApp depending on your
+              preference.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            💡 Do you offer strategy or creative input?
+          </button>
+          <div class="accordion-body">
+            <p>
+              Yes, we love collaborating on concepts and strategy. From
+              storytelling to trends and hooks, we'll help guide your creative
+              direction.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            🚀 Can you help me grow on social media?
+          </button>
+          <div class="accordion-body">
+            <p>
+              Definitely. Our editing emphasizes hooks and retention, and we
+              offer optional thumbnail and caption services for max engagement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="contact-header">
+        <h2 class="upgrade-heading">Ready to upgrade your content ?</h2>
+        <h2 class="contact-title">Let's Connect</h2>
+        <p>
+          Feel free to reach out through any platform below or send a direct
+          message.
+        </p>
+      </div>
+      <div class="contact-layout">
+        <div class="form-area">
+          <form
+            class="contact-form"
+            id="contactForm"
+            action="https://formspree.io/f/xnnvjqyk"
+            method="POST"
+          >
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input
+              type="email"
+              name="_replyto"
+              placeholder="Your Email"
+              required
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              required
+            ></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+
+        <div class="profile-card">
+          <img
+            src="assets/img/random images/pexels-cottonbro-3296434.jpg"
+            alt="ClipCraft Avatar"
+          />
+          <h3>Hey, I'm ClipCraft ✂️</h3>
+          <p>I usually reply within 24 hours. Let's collaborate!</p>
+          <p class="location">📍 Nairobi, Kenya</p>
+          <a
+            href="https://tiktok.com/@yourusername"
+            target="_blank"
+            class="profile-btn"
+            >Follow me on TikTok</a
+          >
+        </div>
+        <div class="social-box">
+          <h3>Also find me on:</h3>
+          <div class="social-pill-icons">
+            <a href="https://discord.com" target="_blank" class="pill discord">
+              <i class="fab fa-discord"></i> Discord
+            </a>
+            <a href="https://tiktok.com" target="_blank" class="pill tiktok">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://x.com" target="_blank" class="pill twitter">
+              <i class="fab fa-x-twitter"></i> X (Twitter)
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              class="pill instagram"
+            >
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="mailto:your@email.com" target="_blank" class="pill email">
+              <i class="fas fa-envelope"></i> Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const items = document.querySelectorAll(".accordion-item");
+
+      items.forEach((item) => {
+        item
+          .querySelector(".accordion-header")
+          .addEventListener("click", () => {
+            item.classList.toggle("active");
+
+            const body = item.querySelector(".accordion-body");
+            if (item.classList.contains("active")) {
+              body.style.maxHeight = body.scrollHeight + "px";
+            } else {
+              body.style.maxHeight = 0;
+            }
+          });
+      });
+
+      // Scroll Animation for FAQ and Final CTA
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll(".faq, .final-cta").forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Scroll Animation for [data-animate] elements (Contact Section)
+      const contactAnimateElements =
+        document.querySelectorAll("[data-animate]");
+
+      const contactObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      contactAnimateElements.forEach((el) => {
+        contactObserver.observe(el);
+      });
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-10 px-5">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
+        <!-- Logo + Description -->
+        <div>
+          <h2 class="text-xl font-bold font-syne">SocialX</h2>
+          <p class="text-sm mt-2 text-gray-400">
+            Buy & sell top-performing social media accounts with trust and
+            speed.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="font-semibold mb-3 font-syne">Quick Links</h3>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li><a href="/" class="hover:text-white">Home</a></li>
+            <li><a href="/about" class="hover:text-white">About</a></li>
+            <li><a href="/accounts" class="hover:text-white">Accounts</a></li>
+            <li><a href="/contact" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h3 class="font-semibold mb-3 font-syne">Follow Us</h3>
+          <div class="flex flex-col space-y-2 text-sm text-gray-300">
+            <a href="#" class="hover:text-blue-400">Facebook</a>
+            <a href="#" class="hover:text-pink-400">Instagram</a>
+            <a href="#" class="hover:text-blue-300">Twitter</a>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h3 class="font-semibold mb-3 font-syne">Contact</h3>
+          <p class="text-sm text-gray-400">Email: support@socialx.com</p>
+          <p class="text-sm text-gray-400">Phone: +254 700 123 456</p>
+        </div>
+
+        <!-- Newsletter Sign-up -->
+        <div>
+          <h3 class="font-semibold mb-3 font-syne">Subscribe</h3>
+          <p class="text-sm text-gray-400 mb-3">
+            Get updates and offers directly in your inbox.
+          </p>
+          <form class="flex flex-col space-y-3">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="px-3 py-2 rounded-md text-gray-900"
+              required
+            />
+            <button
+              type="submit"
+              class="bg-gradient-to-r from-purple-700 via-pink-500 to-red-500 hover:from-purple-800 hover:via-pink-600 hover:to-red-600 text-white font-semibold px-4 py-2 rounded-md shadow-lg transition duration-300"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="mt-10 text-center text-gray-500 text-sm border-t border-gray-700 pt-4"
+      >
+        © 2025 SocialX. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ClipCraft - Contact</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/my-profile-img.png" rel="icon" />
+    <link href="assets/img/my-profile-img.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link
+      href="assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --primary-bg-color: #0d0d0d;
+        --secondary-bg-color: #1a1a1a;
+        --card-bg-color: #222;
+        --text-color: #fff;
+        --light-text-color: #aaa;
+        --accent-color: #ff4d4d;
+        --accent-dark-color: #e60000;
+        --border-color: #333;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--primary-bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      /* Navbar Styles */
+      #navbar {
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 15, 15, 0.95),
+          rgba(25, 25, 25, 0.98)
+        );
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        height: 50px;
+        width: 75%;
+        max-width: 850px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 25px;
+        margin-top: 10px;
+        z-index: 9999;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        position: fixed;
+        top: 0;
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+        padding: 0 1rem;
+      }
+
+      .desktop-links {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-container img {
+        height: 24px !important;
+        width: 24px !important;
+        transition: transform 0.3s ease !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+      }
+
+      .logo-container span {
+        font-size: 1.1rem;
+      }
+
+      .cta-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+        color: white;
+        text-decoration: none;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.95rem;
+        opacity: 1;
+        visibility: visible;
+        display: inline-block;
+        border-radius: 15px;
+      }
+
+      .nav-link:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: #fb923c;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 2px;
+        background-color: #fb923c;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .cta-button {
+        background: linear-gradient(270deg, #f59e0b, #e11d48, #6366f1);
+        background-size: 200% 200%;
+        animation: pulseBorder 2s infinite, gradientMotion 3s ease infinite;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        opacity: 1;
+        visibility: visible;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .cta-button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+      }
+
+      #mobileMenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(30, 30, 30, 0.95),
+          rgba(40, 40, 40, 0.98)
+        );
+        backdrop-filter: blur(8px);
+        border-radius: 0 0 15px 15px;
+        z-index: 9999;
+        padding: 0.4rem;
+        display: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        min-height: 160px;
+      }
+
+      #mobileMenu.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        animation: slideDown 0.3s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      #mobileMenu .nav-link {
+        font-size: 0.95rem;
+        padding: 0.3rem 0.6rem;
+        width: 90%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      #mobileMenu .nav-link:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+      }
+
+      #mobileMenu .nav-link:last-child {
+        border-bottom: none;
+      }
+
+      #mobileMenu .cta-button {
+        margin-top: 0.4rem;
+        width: 85%;
+        text-align: center;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.95rem;
+        background: linear-gradient(270deg, #f59e0b, #e11d48, #6366f1);
+        border: none;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      #mobileMenu .cta-button:hover {
+        transform: scale(1.02);
+      }
+
+      /* Mobile Menu Button */
+      #menuBtn {
+        background: none;
+        border: none;
+        padding: 0.3rem;
+        display: none;
+      }
+
+      #menuBtn i {
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .desktop-links,
+        .cta-container {
+          display: none !important;
+        }
+
+        .nav-container {
+          justify-content: space-between !important;
+        }
+
+        #menuBtn {
+          display: flex !important;
+          align-items: center !important;
+          cursor: pointer !important;
+        }
+      }
+
+      @media (min-width: 769px) {
+        #menuBtn {
+          display: none !important;
+        }
+      }
+
+      @keyframes pulseBorder {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(251, 146, 60, 0);
+        }
+      }
+
+      @keyframes gradientMotion {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Contact Section Styles */
+      .contact-section {
+        padding: 80px 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        background: linear-gradient(90deg, #ff1a1a, #ff6a00, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+
+      .contact-form {
+        background: var(--card-bg-color);
+        padding: 2rem;
+        border-radius: 20px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        color: var(--text-color);
+        font-family: inherit;
+      }
+
+      .contact-form textarea {
+        height: 150px;
+        resize: vertical;
+      }
+
+      .contact-form button {
+        background: linear-gradient(90deg, #ff1a1a, #ff6a00, #ffc107);
+        color: var(--text-color);
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: bold;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-form button:hover {
+        transform: translateY(-2px);
+      }
+
+      .contact-info {
+        padding: 2rem;
+      }
+
+      .contact-info img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 2px solid var(--accent-color);
+      }
+
+      .contact-info h3 {
+        color: var(--accent-color);
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-details {
+        margin-bottom: 2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        color: var(--light-text-color);
+      }
+
+      .contact-item i {
+        margin-right: 1rem;
+        color: var(--accent-color);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .social-links a {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--accent-color);
+      }
+
+      @media (max-width: 768px) {
+        .contact-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .contact-section {
+          padding: 40px 5px;
+        }
+        .section-title h2 {
+          font-size: 1.5rem;
+        }
+        .contact-layout {
+          gap: 1.2rem;
+        }
+        .contact-form,
+        .contact-info {
+          padding: 1rem;
+          border-radius: 12px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+          padding: 0.6rem;
+          font-size: 0.95rem;
+          margin-bottom: 0.7rem;
+          border-radius: 7px;
+        }
+        .contact-form button {
+          padding: 0.7rem 1.2rem;
+          font-size: 1rem;
+          border-radius: 7px;
+        }
+        .contact-info img {
+          width: 60px;
+          height: 60px;
+        }
+        .contact-info h3 {
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+        }
+        .contact-details {
+          margin-bottom: 1.2rem;
+        }
+        .contact-item {
+          font-size: 0.95rem;
+          margin-bottom: 0.6rem;
+        }
+        .social-links {
+          gap: 0.7rem;
+          margin-top: 1.2rem;
+        }
+      }
+
+      /* Hero Section Styles */
+      .hero {
+        height: 50vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 80px 0 0 50px;
+        background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.95) 40%,
+            rgba(0, 0, 0, 0.2)
+          ),
+          url("assets/img/vecteezy_futuristic-desktop-computer-mockup-background_48632726.jpg");
+        background-size: cover;
+        background-position: right center;
+      }
+
+      .hero-content {
+        max-width: 600px;
+        z-index: 1;
+        animation: fadeInUp 1s ease-out forwards;
+        opacity: 0;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        font-weight: 700;
+        background: linear-gradient(90deg, #ff1a1a, #ff6a00, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        max-width: 600px;
+        color: #eee;
+      }
+
+      .btn-primary {
+        background-color: #000;
+        color: #fff;
+        border: 2px solid #e60000;
+        padding: 10px 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 10px;
+        box-shadow: 0 2px 0 rgba(230, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: #e60000;
+        color: #000;
+        box-shadow: 0 6px 0 #800000;
+        transform: translateY(-2px);
+      }
+
+      @keyframes fadeInUp {
+        0% {
+          transform: translateY(40px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          background-position: center center;
+          padding: 40px 20px;
+          height: 40vh;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-content p {
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Meet the Team Section */
+      .team-section {
+        padding: 60px 0 40px 0;
+        background: linear-gradient(135deg, #23272f 80%, #181818 100%);
+      }
+
+      .team-section .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+      }
+
+      .team-section .team-card {
+        background: #181818;
+        border-radius: 1.2rem;
+        box-shadow: 0 4px 24px #00ffcc22;
+        padding: 2rem 1.2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .team-section .team-card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #6366f1;
+        box-shadow: 0 0 24px #fb923c55;
+      }
+
+      .team-section .team-card > div {
+        font-weight: 700;
+        color: #fb923c;
+        margin-top: 1rem;
+      }
+
+      .team-section .team-card > div:last-child {
+        color: #ccc;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      @media (max-width: 480px) {
+        .team-section .team-grid {
+          grid-template-columns: repeat(3, 1fr) !important;
+          gap: 0.7rem !important;
+        }
+        .team-section .team-card {
+          width: 80px !important;
+          height: 80px !important;
+          min-width: 0 !important;
+          min-height: 0 !important;
+          max-width: 90px !important;
+          max-height: 90px !important;
+          padding: 0.3rem !important;
+          border-radius: 12px !important;
+          box-shadow: none !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        .team-section .team-card img {
+          width: 38px !important;
+          height: 38px !important;
+          border-width: 2px !important;
+          margin-bottom: 0.2rem !important;
+        }
+        .team-section .team-card > div {
+          font-size: 0.7rem !important;
+          margin-top: 0.2rem !important;
+          margin-bottom: 0.1rem !important;
+          text-align: center !important;
+          line-height: 1.1 !important;
+        }
+        .team-section h2 {
+          font-size: 1.1rem !important;
+          margin-bottom: 1rem !important;
+        }
+      }
+
+      /* Map & Directions Section */
+      .map-section {
+        background: #181818;
+        padding: 40px 0 30px 0;
+      }
+
+      .map-section .container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .map-section h2 {
+        font-size: 1.7rem;
+        font-family: "Syne", sans-serif;
+        color: #fb923c;
+        margin-bottom: 1.2rem;
+      }
+
+      .map-section .map-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        border-radius: 1.2rem;
+        overflow: hidden;
+        box-shadow: 0 2px 12px #6366f1aa;
+      }
+
+      .map-section iframe {
+        width: 100%;
+        height: 220px;
+        border: none;
+        filter: grayscale(0.7) brightness(0.8);
+      }
+
+      .map-section .map-info {
+        color: #aaa;
+        font-size: 1rem;
+        margin-top: 0.7rem;
+      }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How quickly will I get a response?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We reply to most messages within 24 hours, Monday to Friday."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I get a custom quote?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely! Just fill out the form and tell us about your project."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer rush delivery?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we offer expedited services for urgent projects. Let us know your deadline."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if I need revisions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We include revisions in all our packages to ensure you're happy with the result."
+            }
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Review",
+        "itemReviewed": {
+          "@type": "Organization",
+          "name": "ClipCraft"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Emily Carter"
+        },
+        "reviewBody": "ClipCraft delivered beyond expectations. Our campaign video was a hit!"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact",
+            "item": "contact.html"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 z-[9999] py-1 px-4 shadow-lg">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="logo-container" id="logo">
+          <img
+            src="assets/img/my-profile-img.png"
+            alt="Logo"
+            class="h-8 w-8 rounded-full"
+          />
+          <span class="text-lg font-bold">ClipCraft</span>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="desktop-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="service-detail.html" class="nav-link">Services</a>
+          <a href="project.html" class="nav-link">Projects</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link active">Contact</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="cta-container">
+          <a href="contact.html" class="cta-button">Hire me</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="menuBtn" class="text-white focus:outline-none">
+            <i class="bi bi-list text-xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="service-detail.html" class="nav-link">Services</a>
+        <a href="project.html" class="nav-link">Projects</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <a href="contact.html" class="cta-button">Hire me</a>
+      </div>
+    </nav>
+
+    <!-- Add this script right after the navbar -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", function () {
+          mobileMenu.classList.toggle("active");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", function (event) {
+          if (
+            !menuBtn.contains(event.target) &&
+            !mobileMenu.contains(event.target)
+          ) {
+            mobileMenu.classList.remove("active");
+          }
+        });
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Contact Us</h1>
+        <p>
+          Let's discuss how we can bring your creative vision to life. Get in
+          touch with us today.
+        </p>
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+      </div>
+    </section>
+
+    <!-- Why Contact Us Section -->
+    <section
+      class="why-contact-section"
+      style="
+        background: linear-gradient(90deg, #181818 80%, #23272f 100%);
+        padding: 50px 0 30px 0;
+      "
+    >
+      <div
+        class="container"
+        style="
+          max-width: 1100px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 2.2rem;
+          align-items: start;
+        "
+      >
+        <div style="text-align: center">
+          <div style="font-size: 2.2rem; color: #fb923c">
+            <i class="bi bi-lightning-charge"></i>
+          </div>
+          <h4 style="color: #fff; font-size: 1.2rem; margin: 0.7rem 0 0.3rem 0">
+            Fast Response
+          </h4>
+          <p style="color: #aaa; font-size: 1rem">
+            We reply to most inquiries within 24 hours.
+          </p>
+        </div>
+        <div style="text-align: center">
+          <div style="font-size: 2.2rem; color: #6366f1">
+            <i class="bi bi-shield-check"></i>
+          </div>
+          <h4 style="color: #fff; font-size: 1.2rem; margin: 0.7rem 0 0.3rem 0">
+            Trusted Experts
+          </h4>
+          <p style="color: #aaa; font-size: 1rem">
+            Years of experience in creative video and design.
+          </p>
+        </div>
+        <div style="text-align: center">
+          <div style="font-size: 2.2rem; color: #00ffcc">
+            <i class="bi bi-emoji-smile"></i>
+          </div>
+          <h4 style="color: #fff; font-size: 1.2rem; margin: 0.7rem 0 0.3rem 0">
+            Friendly Support
+          </h4>
+          <p style="color: #aaa; font-size: 1rem">
+            We care about your project and your experience.
+          </p>
+        </div>
+        <div style="text-align: center">
+          <div style="font-size: 2.2rem; color: #f59e0b">
+            <i class="bi bi-award"></i>
+          </div>
+          <h4 style="color: #fff; font-size: 1.2rem; margin: 0.7rem 0 0.3rem 0">
+            Award-Winning
+          </h4>
+          <p style="color: #aaa; font-size: 1rem">
+            Recognized for creative excellence and results.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+      </div>
+
+      <div class="contact-layout">
+        <div class="contact-form">
+          <form action="https://formspree.io/f/xnnvjqyk" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input
+              type="email"
+              name="_replyto"
+              placeholder="Your Email"
+              required
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              required
+            ></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+
+        <div class="contact-info">
+          <img src="assets/img/my-profile-img.png" alt="Profile" />
+          <h3>Get in Touch</h3>
+          <div class="contact-details">
+            <div class="contact-item">
+              <i class="bi bi-geo-alt"></i>
+              <span>Nairobi, Kenya</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-envelope"></i>
+              <span>contact@clipcraft.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-phone"></i>
+              <span>+254 123 456 789</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section
+      class="faq-section"
+      style="background: #181818; padding: 50px 0 30px 0"
+    >
+      <div class="container" style="max-width: 900px; margin: 0 auto">
+        <h2
+          style="
+            text-align: center;
+            font-size: 2rem;
+            font-family: 'Syne', sans-serif;
+            color: #fb923c;
+            margin-bottom: 2rem;
+          "
+        >
+          Frequently Asked Questions
+        </h2>
+        <div
+          class="faq-list"
+          style="display: flex; flex-direction: column; gap: 1.2rem"
+        >
+          <div
+            class="faq-item"
+            style="
+              background: #23272f;
+              border-radius: 1rem;
+              padding: 1.2rem 1.5rem;
+            "
+          >
+            <div style="font-weight: 700; color: #6366f1">
+              How quickly will I get a response?
+            </div>
+            <div style="color: #ccc; margin-top: 0.5rem">
+              We reply to most messages within 24 hours, Monday to Friday.
+            </div>
+          </div>
+          <div
+            class="faq-item"
+            style="
+              background: #23272f;
+              border-radius: 1rem;
+              padding: 1.2rem 1.5rem;
+            "
+          >
+            <div style="font-weight: 700; color: #fb923c">
+              Can I get a custom quote?
+            </div>
+            <div style="color: #ccc; margin-top: 0.5rem">
+              Absolutely! Just fill out the form and tell us about your project.
+            </div>
+          </div>
+          <div
+            class="faq-item"
+            style="
+              background: #23272f;
+              border-radius: 1rem;
+              padding: 1.2rem 1.5rem;
+            "
+          >
+            <div style="font-weight: 700; color: #00ffcc">
+              Do you offer rush delivery?
+            </div>
+            <div style="color: #ccc; margin-top: 0.5rem">
+              Yes, we offer expedited services for urgent projects. Let us know
+              your deadline.
+            </div>
+          </div>
+          <div
+            class="faq-item"
+            style="
+              background: #23272f;
+              border-radius: 1rem;
+              padding: 1.2rem 1.5rem;
+            "
+          >
+            <div style="font-weight: 700; color: #f59e0b">
+              What if I need revisions?
+            </div>
+            <div style="color: #ccc; margin-top: 0.5rem">
+              We include revisions in all our packages to ensure you're happy
+              with the result.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet the Team Section -->
+    <section
+      class="team-section parallax-section"
+      style="display: none"
+    ></section>
+
+    <!-- Photo Slideshow Section -->
+    <section
+      class="slideshow-section"
+      style="
+        background: linear-gradient(135deg, #23272f 80%, #181818 100%);
+        padding: 40px 0 30px 0;
+      "
+    >
+      <div class="container" style="max-width: 900px; margin: 0 auto">
+        <h2
+          style="
+            text-align: center;
+            font-size: 2rem;
+            font-family: 'Syne', sans-serif;
+            color: #fb923c;
+            margin-bottom: 2rem;
+          "
+        >
+          Our Work in Motion
+        </h2>
+        <div
+          class="swiper-container"
+          style="
+            border-radius: 1.2rem;
+            overflow: hidden;
+            box-shadow: 0 4px 24px #00ffcc22;
+          "
+        >
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img
+                src="assets/img/random images/pexels-alexfu-1188750.jpg"
+                alt="Slide 1"
+                style="width: 100%; height: 260px; object-fit: cover"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="assets/img/random images/pexels-amar-11025646.jpg"
+                alt="Slide 2"
+                style="width: 100%; height: 260px; object-fit: cover"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="assets/img/random images/pexels-cottonbro-3296434.jpg"
+                alt="Slide 3"
+                style="width: 100%; height: 260px; object-fit: cover"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="assets/img/random images/pexels-lulizler-3165335.jpg"
+                alt="Slide 4"
+                style="width: 100%; height: 260px; object-fit: cover"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="assets/img/random images/pexels-maxavans-5059411.jpg"
+                alt="Slide 5"
+                style="width: 100%; height: 260px; object-fit: cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.Swiper) {
+          new Swiper(".swiper-container", {
+            loop: true,
+            speed: 900,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoplay: { delay: 1800, disableOnInteraction: false },
+            effect: "slide",
+            grabCursor: true,
+            momentumBounce: true,
+            momentumRatio: 0.8,
+            pagination: { el: ".swiper-pagination", clickable: true },
+          });
+        }
+      });
+    </script>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Footer -->
+    <footer
+      style="
+        background: #0d0d0d;
+        color: #fff;
+        padding: 3rem 0 1rem 0;
+        margin-top: 4rem;
+      "
+    >
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+          "
+        >
+          <!-- Company Info -->
+          <div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <img
+                src="assets/img/my-profile-img.png"
+                alt="ClipCraft"
+                style="width: 30px; height: 30px; border-radius: 50%"
+              />
+              <h3 style="font-size: 1.2rem; font-weight: 600; color: #fb923c">
+                ClipCraft
+              </h3>
+            </div>
+            <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6">
+              Professional video editing and creative services. We bring your
+              vision to life with cutting-edge technology and artistic
+              expertise.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 style="color: #fb923c; font-size: 1rem; margin-bottom: 1rem">
+              Quick Links
+            </h4>
+            <ul style="list-style: none; padding: 0">
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="index.html"
+                  style="
+                    color: #aaa;
+                    text-decoration: none;
+                    font-size: 0.9rem;
+                    transition: color 0.3s ease;
+                  "
+                  >Home</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="about.html"
+                  style="
+                    color: #aaa;
+                    text-decoration: none;
+                    font-size: 0.9rem;
+                    transition: color 0.3s ease;
+                  "
+                  >About</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="service-detail.html"
+                  style="
+                    color: #aaa;
+                    text-decoration: none;
+                    font-size: 0.9rem;
+                    transition: color 0.3s ease;
+                  "
+                  >Services</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="project.html"
+                  style="
+                    color: #aaa;
+                    text-decoration: none;
+                    font-size: 0.9rem;
+                    transition: color 0.3s ease;
+                  "
+                  >Projects</a
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <a
+                  href="contact.html"
+                  style="
+                    color: #aaa;
+                    text-decoration: none;
+                    font-size: 0.9rem;
+                    transition: color 0.3s ease;
+                  "
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <h4 style="color: #fb923c; font-size: 1rem; margin-bottom: 1rem">
+              Services
+            </h4>
+            <ul style="list-style: none; padding: 0">
+              <li style="margin-bottom: 0.5rem">
+                <span style="color: #aaa; font-size: 0.9rem"
+                  >Video Editing</span
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <span style="color: #aaa; font-size: 0.9rem"
+                  >Motion Graphics</span
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <span style="color: #aaa; font-size: 0.9rem"
+                  >Brand Animation</span
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <span style="color: #aaa; font-size: 0.9rem"
+                  >Social Media Content</span
+                >
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                <span style="color: #aaa; font-size: 0.9rem"
+                  >Corporate Videos</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h4 style="color: #fb923c; font-size: 1rem; margin-bottom: 1rem">
+              Contact
+            </h4>
+            <div style="color: #aaa; font-size: 0.9rem">
+              <p style="margin-bottom: 0.5rem">
+                <i
+                  class="bi bi-geo-alt"
+                  style="color: #fb923c; margin-right: 0.5rem"
+                ></i
+                >Nairobi, Kenya
+              </p>
+              <p style="margin-bottom: 0.5rem">
+                <i
+                  class="bi bi-envelope"
+                  style="color: #fb923c; margin-right: 0.5rem"
+                ></i
+                >contact@clipcraft.com
+              </p>
+              <p style="margin-bottom: 0.5rem">
+                <i
+                  class="bi bi-phone"
+                  style="color: #fb923c; margin-right: 0.5rem"
+                ></i
+                >+254 123 456 789
+              </p>
+            </div>
+            <!-- Social Links -->
+            <div style="display: flex; gap: 1rem; margin-top: 1rem">
+              <a
+                href="#"
+                style="
+                  color: #aaa;
+                  font-size: 1.2rem;
+                  transition: color 0.3s ease;
+                "
+                ><i class="bi bi-twitter"></i
+              ></a>
+              <a
+                href="#"
+                style="
+                  color: #aaa;
+                  font-size: 1.2rem;
+                  transition: color 0.3s ease;
+                "
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a
+                href="#"
+                style="
+                  color: #aaa;
+                  font-size: 1.2rem;
+                  transition: color 0.3s ease;
+                "
+                ><i class="bi bi-instagram"></i
+              ></a>
+              <a
+                href="#"
+                style="
+                  color: #aaa;
+                  font-size: 1.2rem;
+                  transition: color 0.3s ease;
+                "
+                ><i class="bi bi-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div
+          style="
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.8rem;
+          "
+        >
+          <p>
+            &copy; 2025 ClipCraft. All rights reserved. | Professional Video
+            Editing Services
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

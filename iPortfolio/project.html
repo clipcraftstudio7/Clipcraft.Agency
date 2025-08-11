@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects - ClipCraft</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "project.html"
+          }
+        ]
+      }
+    </script>
+    <style>
+      :root {
+        --primary-bg-color: #0d0d0d;
+        --secondary-bg-color: #1a1a1a;
+        --card-bg-color: #222;
+        --text-color: #fff;
+        --light-text-color: #aaa;
+        --accent-color: #ff4d4d;
+        --accent-dark-color: #e60000;
+        --border-color: #333;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--primary-bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      /* Navbar Styles */
+      #navbar {
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 15, 15, 0.95),
+          rgba(25, 25, 25, 0.98)
+        );
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        height: 50px;
+        width: 75%;
+        max-width: 850px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 25px;
+        margin-top: 10px;
+        z-index: 9999;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        position: fixed;
+        top: 0;
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+        padding: 0 1rem;
+      }
+
+      .desktop-links {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-container img {
+        height: 24px !important;
+        width: 24px !important;
+        transition: transform 0.3s ease !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+      }
+
+      .logo-container span {
+        font-size: 1.1rem;
+      }
+
+      .cta-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+        color: white;
+        text-decoration: none;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.95rem;
+        opacity: 1;
+        visibility: visible;
+        display: inline-block;
+        border-radius: 15px;
+      }
+
+      .nav-link:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: #fb923c;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 2px;
+        background-color: #fb923c;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .cta-button {
+        background: linear-gradient(270deg, #f59e0b, #e11d48, #6366f1);
+        background-size: 200% 200%;
+        animation: pulseBorder 2s infinite, gradientMotion 3s ease infinite;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        opacity: 1;
+        visibility: visible;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .cta-button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+      }
+
+      #mobileMenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(30, 30, 30, 0.95),
+          rgba(40, 40, 40, 0.98)
+        );
+        backdrop-filter: blur(8px);
+        border-radius: 0 0 15px 15px;
+        z-index: 9999;
+        padding: 0.4rem;
+        display: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        min-height: 160px;
+      }
+
+      #mobileMenu.active {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        animation: slideDown 0.3s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      #mobileMenu .nav-link {
+        font-size: 0.95rem;
+        padding: 0.3rem 0.6rem;
+        width: 90%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      #mobileMenu .nav-link:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+      }
+
+      #mobileMenu .nav-link:last-child {
+        border-bottom: none;
+      }
+
+      #mobileMenu .cta-button {
+        margin-top: 0.4rem;
+        width: 85%;
+        text-align: center;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.95rem;
+        background: linear-gradient(270deg, #f59e0b, #e11d48, #6366f1);
+        border: none;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      #mobileMenu .cta-button:hover {
+        transform: scale(1.02);
+      }
+
+      /* Mobile Menu Button */
+      #menuBtn {
+        background: none;
+        border: none;
+        padding: 0.3rem;
+        display: none;
+      }
+
+      #menuBtn i {
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .desktop-links,
+        .cta-container {
+          display: none !important;
+        }
+
+        .nav-container {
+          justify-content: space-between !important;
+        }
+
+        #menuBtn {
+          display: block !important;
+          cursor: pointer !important;
+          padding: 0.3rem !important;
+        }
+      }
+
+      @media (min-width: 769px) {
+        #menuBtn {
+          display: none !important;
+        }
+      }
+
+      @keyframes pulseBorder {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(251, 146, 60, 0);
+        }
+      }
+
+      @keyframes gradientMotion {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .hero {
+        position: relative;
+        height: 40vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+        overflow: hidden;
+        padding-top: 100px !important;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.9),
+          rgba(0, 0, 0, 0.5)
+        );
+        z-index: 1;
+      }
+
+      .hero img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 20px;
+        max-width: 600px;
+        margin-left: 20px;
+        margin-top: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        background: linear-gradient(90deg, #ff1a1a, #ff6a00, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-content p {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+        color: var(--light-text-color);
+      }
+
+      .btn-primary {
+        background: linear-gradient(90deg, #ff1a1a, #ff6a00, #ffc107);
+        color: var(--text-color);
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: transform 0.3s ease;
+        display: inline-block;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+      }
+
+      .portfolio-section {
+        padding: 80px 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        background: linear-gradient(90deg, #facc15, #f472b6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .portfolio-filters {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .portfolio-filters li {
+        list-style: none;
+        padding: 0.5rem 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .portfolio-filters li:hover,
+      .portfolio-filters li.filter-active {
+        background: #fb923c;
+      }
+
+      .portfolio-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 20px;
+      }
+
+      .portfolio-item {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .portfolio-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .portfolio-item:hover img {
+        transform: scale(1.05);
+      }
+
+      .portfolio-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+      }
+
+      .portfolio-info h4 {
+        margin: 0;
+        color: #fff;
+        font-size: 1.2rem;
+      }
+
+      .portfolio-info p {
+        margin: 0.5rem 0 0;
+        color: #ccc;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .portfolio-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero-content h1 {
+          font-size: 1.3rem !important;
+          margin-bottom: 0.5rem !important;
+        }
+        .hero-content p {
+          font-size: 0.85rem !important;
+          margin-bottom: 0.7rem !important;
+        }
+      }
+      @media (max-width: 768px) {
+        .mobile-home-icon {
+          display: inline-block !important;
+          vertical-align: middle;
+        }
+      }
+
+      #mobileMenu {
+        display: none !important;
+      }
+
+      #mobileMenu.active {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        animation: slideDown 0.3s ease-out;
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      aria-label="Breadcrumb"
+      style="background: #23272f; padding: 0.7rem 1rem; font-size: 0.98rem"
+    >
+      <ol
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+        style="
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        "
+      >
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <a
+            href="index.html"
+            itemprop="item"
+            style="color: #fb923c; text-decoration: none"
+            ><span itemprop="name">Home</span></a
+          >
+          <meta itemprop="position" content="1" />
+        </li>
+        <li style="color: #aaa">&gt;</li>
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="name" style="color: #fff">Projects</span>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 z-[9999] py-1 px-4 shadow-lg">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="logo-container" id="logo">
+          <a
+            href="index.html"
+            class="mobile-home-icon"
+            style="display: none; margin-right: 0.5rem"
+            ><i class="bi bi-list text-xl"></i
+          ></a>
+          <img
+            src="assets/img/my-profile-img.png"
+            alt="Logo"
+            class="h-8 w-8 rounded-full"
+          />
+          <span class="text-lg font-bold">ClipCraft</span>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="desktop-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="service-detail.html" class="nav-link">Services</a>
+          <a href="project.html" class="nav-link active">Projects</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="cta-container">
+          <a href="contact.html" class="cta-button">Hire me</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button
+            id="menuBtn"
+            class="text-white focus:outline-none"
+            style="
+              background: #111;
+              border-radius: 50%;
+              width: 36px;
+              height: 36px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0;
+              border: none;
+            "
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect y="4" width="22" height="2.5" rx="1.25" fill="#fff" />
+              <rect y="9.25" width="22" height="2.5" rx="1.25" fill="#fff" />
+              <rect y="14.5" width="22" height="2.5" rx="1.25" fill="#fff" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="service-detail.html" class="nav-link">Services</a>
+        <a href="project.html" class="nav-link active">Projects</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="contact.html" class="cta-button">Hire me</a>
+      </div>
+    </nav>
+
+    <!-- Add this script right after the navbar -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", function () {
+          mobileMenu.classList.toggle("active");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", function (event) {
+          if (
+            !menuBtn.contains(event.target) &&
+            !mobileMenu.contains(event.target)
+          ) {
+            mobileMenu.classList.remove("active");
+          }
+        });
+      });
+    </script>
+
+    <section class="hero">
+      <img
+        src="assets/img/vecteezy_futuristic-desktop-computer-mockup-background_48632726.jpg"
+        alt="Hero Background"
+      />
+      <div class="hero-content">
+        <h1>Our Projects</h1>
+        <p>
+          Explore our portfolio of creative video editing projects that showcase
+          our expertise and passion.
+        </p>
+        <a href="#projects" class="btn-primary">View Projects</a>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="projects">
+      <div class="section-title" style="text-align: center">
+        <h2
+          style="
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #facc15, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Our Projects
+        </h2>
+        <p style="color: #aaa; font-size: 1.1rem; margin-top: 0.5rem">
+          A showcase of our best work in video editing, motion graphics, and
+          more.
+        </p>
+      </div>
+      <ul
+        class="portfolio-filters"
+        id="project-filters"
+        style="
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          margin-bottom: 2rem;
+          flex-wrap: wrap;
+        "
+      >
+        <li class="filter-active" data-filter="all">All</li>
+        <li data-filter="video">Video Editing</li>
+        <li data-filter="motion">Motion Graphics</li>
+        <li data-filter="vfx">Visual Effects</li>
+        <li data-filter="audio">Audio Production</li>
+      </ul>
+      <div
+        class="portfolio-container"
+        id="project-grid"
+        style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 2rem;
+          padding: 20px;
+        "
+      >
+        <!-- Project Card Example -->
+        <div
+          class="portfolio-item"
+          data-category="video motion featured"
+          style="position: relative; animation: fadeInUp 0.7s both"
+        >
+          <img
+            src="assets/img/random images/pexels-maxavans-5059411.jpg"
+            alt="Corporate Video"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Corporate Video
+              <span
+                style="
+                  background: #fb923c;
+                  color: #fff;
+                  font-size: 0.8rem;
+                  padding: 0.2em 0.7em;
+                  border-radius: 1em;
+                  margin-left: 0.5em;
+                "
+                >Featured</span
+              >
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Video Editing & Motion Graphics
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="0"
+              style="
+                margin-top: 0.7rem;
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="project-corporate-video.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="vfx audio"
+          style="position: relative; animation: fadeInUp 0.8s both"
+        >
+          <img
+            src="assets/img/random images/pexels-amar-11025646.jpg"
+            alt="Product Showcase"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Product Showcase
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Visual Effects & Color Grading
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="1"
+              style="
+                margin-top: 0.7rem;
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="project-product-showcase.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="motion"
+          style="position: relative; animation: fadeInUp 0.9s both"
+        >
+          <img
+            src="assets/img/random images/pexels-lulizler-3165335.jpg"
+            alt="Brand Animation"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Brand Animation
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Motion Graphics & Animation
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="2"
+              style="
+                margin-top: 0.7rem;
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-brand-animation.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="audio video"
+          style="position: relative; animation: fadeInUp 1s both"
+        >
+          <img
+            src="assets/img/random images/pexels-alexfu-1188750.jpg"
+            alt="Music Video"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Music Video
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Video Editing & Audio Production
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="3"
+              style="
+                margin-top: 0.7rem;
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-music-video.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="branding"
+          style="position: relative; animation: fadeInUp 1.1s both"
+        >
+          <img
+            src="assets/img/random images/pexels-cottonbro-3296434 (1).jpg"
+            alt="Branding Campaign"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Branding Campaign
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Branding & Visual Identity
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="4"
+              style="
+                margin-top: 0.7rem;
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-branding-campaign.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="video"
+          style="position: relative; animation: fadeInUp 1.2s both"
+        >
+          <img
+            src="assets/img/random images/pexels-gezerasph-25753692.jpg"
+            alt="App Promo"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">App Promo</h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              App Launch & Video Editing
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="5"
+              style="
+                margin-top: 0.7rem;
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-app-promo.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="product"
+          style="position: relative; animation: fadeInUp 1.3s both"
+        >
+          <img
+            src="assets/img/random images/pexels-maxavans-5059411.jpg"
+            alt="Product Ad"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Product Ad
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Product Commercial & Editing
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="6"
+              style="
+                margin-top: 0.7rem;
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-product-ad.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="books"
+          style="position: relative; animation: fadeInUp 1.4s both"
+        >
+          <img
+            src="assets/img/random images/pexels-amar-11025646.jpg"
+            alt="Book Trailer"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Book Trailer
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Book Promo & Animation
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="7"
+              style="
+                margin-top: 0.7rem;
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-book-trailer.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="branding"
+          style="position: relative; animation: fadeInUp 1.5s both"
+        >
+          <img
+            src="assets/img/random images/pexels-lulizler-3165335.jpg"
+            alt="Branding Excellence"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Branding Excellence
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Award-Winning Branding Project
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="8"
+              style="
+                margin-top: 0.7rem;
+                background: #fb923c;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-branding-excellence.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="video"
+          style="position: relative; animation: fadeInUp 1.6s both"
+        >
+          <img
+            src="assets/img/random images/pexels-alexfu-1188750.jpg"
+            alt="Viral Social Edit"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Viral Social Edit
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              10M+ Views on Social Media
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="9"
+              style="
+                margin-top: 0.7rem;
+                background: #fb923c;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-viral-social-edit.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="animation"
+          style="position: relative; animation: fadeInUp 1.7s both"
+        >
+          <img
+            src="assets/img/random images/pexels-cottonbro-3296434 (1).jpg"
+            alt="Creative Animation"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Creative Animation
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Storytelling in Motion
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="10"
+              style="
+                margin-top: 0.7rem;
+                background: #00ffcc;
+                color: #181818;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-creative-animation.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+        <div
+          class="portfolio-item"
+          data-category="branding"
+          style="position: relative; animation: fadeInUp 1.8s both"
+        >
+          <img
+            src="assets/img/random images/pexels-gezerasph-25753692.jpg"
+            alt="Brand Refresh"
+            style="width: 100%; height: 180px; object-fit: cover"
+            loading="lazy"
+          />
+          <div
+            class="portfolio-info"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              padding: 1.2rem;
+              background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9),
+                transparent
+              );
+            "
+          >
+            <h4 style="margin: 0; color: #fff; font-size: 1.1rem">
+              Brand Refresh
+            </h4>
+            <p style="margin: 0.5rem 0 0; color: #ccc; font-size: 0.9rem">
+              Modernized Brand Identity
+            </p>
+            <button
+              class="view-project-btn"
+              data-project="11"
+              style="
+                margin-top: 0.7rem;
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-brand-refresh.html"
+                style="color: inherit; text-decoration: none"
+                >View Details</a
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem">
+        <button
+          id="load-more-projects"
+          style="
+            background: linear-gradient(90deg, #6366f1, #fb923c);
+            color: #fff;
+            border: none;
+            padding: 0.7em 2.2em;
+            border-radius: 2em;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #6366f155;
+            transition: background 0.2s;
+          "
+        >
+          Load More
+        </button>
+      </div>
+      <!-- Project Modal -->
+      <div
+        id="project-modal"
+        style="
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.85);
+          z-index: 99999;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <div
+          id="modal-content"
+          style="
+            background: #181818;
+            border-radius: 1.2rem;
+            max-width: 420px;
+            width: 90vw;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 8px 32px #00ffcc33;
+          "
+        >
+          <button
+            id="close-modal"
+            style="
+              position: absolute;
+              top: 1rem;
+              right: 1rem;
+              background: none;
+              border: none;
+              font-size: 1.7rem;
+              color: #fb923c;
+              cursor: pointer;
+            "
+          >
+            &times;
+          </button>
+          <img
+            id="modal-img"
+            src=""
+            alt="Project"
+            style="
+              width: 100%;
+              border-radius: 0.7rem;
+              object-fit: cover;
+              max-height: 180px;
+            "
+          />
+          <h3 id="modal-title" style="color: #fff; margin-top: 1.2rem"></h3>
+          <div
+            id="modal-tags"
+            style="
+              margin: 0.7rem 0 0.5rem 0;
+              font-size: 0.95rem;
+              color: #00ffcc;
+            "
+          ></div>
+          <p
+            id="modal-desc"
+            style="color: #ccc; font-size: 1rem; margin-bottom: 1.2rem"
+          ></p>
+          <a
+            id="modal-demo"
+            href="#"
+            target="_blank"
+            style="
+              display: inline-block;
+              background: #6366f1;
+              color: #fff;
+              padding: 0.4em 1.2em;
+              border-radius: 1em;
+              text-decoration: none;
+              font-size: 0.95rem;
+            "
+            >View Demo</a
+          >
+        </div>
+      </div>
+      <style>
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      </style>
+      <script>
+        // Project Data
+        const projects = [
+          {
+            img: "assets/img/random images/pexels-maxavans-5059411.jpg",
+            title: "Corporate Video",
+            tags: ["Video Editing", "Motion Graphics", "Featured"],
+            desc: "A dynamic corporate video for a leading brand, featuring motion graphics and seamless editing.",
+            demo: "#",
+            category: "video motion featured",
+          },
+          {
+            img: "assets/img/random images/pexels-amar-11025646.jpg",
+            title: "Product Showcase",
+            tags: ["Visual Effects", "Color Grading"],
+            desc: "A product showcase with advanced VFX and color grading for maximum impact.",
+            demo: "#",
+            category: "vfx audio",
+          },
+          {
+            img: "assets/img/random images/pexels-lulizler-3165335.jpg",
+            title: "Brand Animation",
+            tags: ["Motion Graphics", "Animation"],
+            desc: "Animated brand visuals to boost recognition and engagement.",
+            demo: "#",
+            category: "motion",
+          },
+          {
+            img: "assets/img/random images/pexels-alexfu-1188750.jpg",
+            title: "Music Video",
+            tags: ["Video Editing", "Audio Production"],
+            desc: "A music video project with creative edits and professional audio production.",
+            demo: "#",
+            category: "audio video",
+          },
+          {
+            img: "assets/img/random images/pexels-cottonbro-3296434 (1).jpg",
+            title: "Branding Campaign",
+            tags: ["Branding", "Visual Identity"],
+            desc: "A comprehensive branding campaign with a focus on visual identity and consistency.",
+            demo: "#",
+            category: "branding",
+          },
+          {
+            img: "assets/img/random images/pexels-gezerasph-25753692.jpg",
+            title: "App Promo",
+            tags: ["App Launch", "Video Editing"],
+            desc: "A high-energy promo video for a new app launch, designed to drive downloads.",
+            demo: "#",
+            category: "video",
+          },
+          {
+            img: "assets/img/random images/pexels-maxavans-5059411.jpg",
+            title: "Product Ad",
+            tags: ["Product", "Commercial", "Editing"],
+            desc: "A creative product advertisement with engaging edits and commercial appeal.",
+            demo: "#",
+            category: "product",
+          },
+          {
+            img: "assets/img/random images/pexels-amar-11025646.jpg",
+            title: "Book Trailer",
+            tags: ["Book", "Promo", "Animation"],
+            desc: "A cinematic trailer for a book release, combining animation and promo techniques.",
+            demo: "#",
+            category: "books",
+          },
+          {
+            img: "assets/img/random images/pexels-lulizler-3165335.jpg",
+            title: "Branding Excellence",
+            tags: ["Branding", "Award Winner"],
+            desc: "Award-winning branding project recognized for creative excellence in 2024.",
+            demo: "#",
+            category: "branding",
+          },
+          {
+            img: "assets/img/random images/pexels-alexfu-1188750.jpg",
+            title: "Viral Social Edit",
+            tags: ["Video Editing", "Viral"],
+            desc: "A social media edit that went viral, amassing over 10 million views.",
+            demo: "#",
+            category: "video",
+          },
+          {
+            img: "assets/img/random images/pexels-cottonbro-3296434 (1).jpg",
+            title: "Creative Animation",
+            tags: ["Animation", "Storytelling"],
+            desc: "A creative animation project focused on storytelling in motion.",
+            demo: "#",
+            category: "animation",
+          },
+          {
+            img: "assets/img/random images/pexels-gezerasph-25753692.jpg",
+            title: "Brand Refresh",
+            tags: ["Branding", "Modernization"],
+            desc: "A complete brand refresh for a modern, forward-thinking identity.",
+            demo: "#",
+            category: "branding",
+          },
+        ];
+        // Filtering
+        document.querySelectorAll("#project-filters li").forEach((btn) => {
+          btn.onclick = function () {
+            document
+              .querySelectorAll("#project-filters li")
+              .forEach((b) => b.classList.remove("filter-active"));
+            btn.classList.add("filter-active");
+            const filter = btn.getAttribute("data-filter");
+            document.querySelectorAll(".portfolio-item").forEach((card) => {
+              if (
+                filter === "all" ||
+                card.getAttribute("data-category").includes(filter)
+              ) {
+                card.style.display = "block";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          };
+        });
+        // Modal logic
+        document.querySelectorAll(".view-project-btn").forEach((btn, i) => {
+          btn.onclick = function () {
+            const p = projects[i];
+            document.getElementById("modal-img").src = p.img;
+            document.getElementById("modal-title").textContent = p.title;
+            document.getElementById("modal-tags").textContent =
+              p.tags.join(", ");
+            document.getElementById("modal-desc").textContent = p.desc;
+            document.getElementById("modal-demo").href = p.demo;
+            document.getElementById("project-modal").style.display = "flex";
+          };
+        });
+        document.getElementById("close-modal").onclick = function () {
+          document.getElementById("project-modal").style.display = "none";
+        };
+        window.onclick = function (e) {
+          if (e.target === document.getElementById("project-modal")) {
+            document.getElementById("project-modal").style.display = "none";
+          }
+        };
+        // Load More Projects Logic
+        const projectCards = Array.from(
+          document.querySelectorAll(".portfolio-item")
+        );
+        let projectsShown = 6;
+        function showProjects(n) {
+          projectCards.forEach((card, i) => {
+            if (i < n) {
+              card.style.display = "block";
+              card.style.animation = "fadeInUp 0.7s both";
+            } else {
+              card.style.display = "none";
+            }
+          });
+          if (n >= projectCards.length) {
+            document.getElementById("load-more-projects").style.display =
+              "none";
+          } else {
+            document.getElementById("load-more-projects").style.display =
+              "inline-block";
+          }
+        }
+        showProjects(projectsShown);
+        document.getElementById("load-more-projects").onclick = function () {
+          projectsShown += 3;
+          showProjects(projectsShown);
+        };
+      </script>
+    </section>
+
+    <!-- Creative Highlights Section -->
+    <section
+      class="creative-highlights-section"
+      style="
+        background: linear-gradient(90deg, #23272f 80%, #181818 100%);
+        padding: 40px 0 20px 0;
+      "
+    >
+      <div class="container" style="max-width: 1200px; margin: 0 auto">
+        <h2
+          style="
+            text-align: center;
+            font-size: 2rem;
+            font-family: 'Syne', sans-serif;
+            color: #fb923c;
+            margin-bottom: 2rem;
+          "
+        >
+          Creative Highlights
+        </h2>
+        <div
+          style="
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+          "
+        >
+          <div
+            class="highlight-card"
+            style="
+              min-width: 320px;
+              background: #181818;
+              border-radius: 1.2rem;
+              box-shadow: 0 4px 24px #00ffcc22;
+              padding: 1.5rem;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            "
+          >
+            <img
+              src="assets/img/random images/pexels-lulizler-3165335.jpg"
+              alt="Award Winner"
+              style="
+                width: 100%;
+                max-width: 220px;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 0.7rem;
+                box-shadow: 0 0 16px #fb923c55;
+              "
+              loading="lazy"
+            />
+            <div style="font-weight: 700; color: #fb923c; margin-top: 1rem">
+              Award Winner
+            </div>
+            <div
+              style="
+                color: #00ffcc;
+                font-size: 1rem;
+                margin: 0.5rem 0 1rem 0;
+                text-align: center;
+              "
+            >
+              Branding Excellence 2024
+            </div>
+            <button
+              class="see-project-btn"
+              data-project="8"
+              style="
+                background: #6366f1;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-branding-excellence.html"
+                style="color: inherit; text-decoration: none"
+                >See Project</a
+              >
+            </button>
+          </div>
+          <div
+            class="highlight-card"
+            style="
+              min-width: 320px;
+              background: #181818;
+              border-radius: 1.2rem;
+              box-shadow: 0 4px 24px #00ffcc22;
+              padding: 1.5rem;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            "
+          >
+            <img
+              src="assets/img/random images/pexels-amar-11025646.jpg"
+              alt="Viral Edit"
+              style="
+                width: 100%;
+                max-width: 220px;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 0.7rem;
+                box-shadow: 0 0 16px #6366f1aa;
+              "
+              loading="lazy"
+            />
+            <div style="font-weight: 700; color: #6366f1; margin-top: 1rem">
+              Viral Edit
+            </div>
+            <div
+              style="
+                color: #fb923c;
+                font-size: 1rem;
+                margin: 0.5rem 0 1rem 0;
+                text-align: center;
+              "
+            >
+              10M+ Views on Social
+            </div>
+            <button
+              class="see-project-btn"
+              data-project="9"
+              style="
+                background: #fb923c;
+                color: #fff;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-viral-social-edit.html"
+                style="color: inherit; text-decoration: none"
+                >See Project</a
+              >
+            </button>
+          </div>
+          <div
+            class="highlight-card"
+            style="
+              min-width: 320px;
+              background: #181818;
+              border-radius: 1.2rem;
+              box-shadow: 0 4px 24px #00ffcc22;
+              padding: 1.5rem;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            "
+          >
+            <img
+              src="assets/img/random images/pexels-cottonbro-3296434 (1).jpg"
+              alt="Creative Animation"
+              style="
+                width: 100%;
+                max-width: 220px;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 0.7rem;
+                box-shadow: 0 0 16px #00ffcc55;
+              "
+              loading="lazy"
+            />
+            <div style="font-weight: 700; color: #00ffcc; margin-top: 1rem">
+              Creative Animation
+            </div>
+            <div
+              style="
+                color: #6366f1;
+                font-size: 1rem;
+                margin: 0.5rem 0 1rem 0;
+                text-align: center;
+              "
+            >
+              Storytelling in Motion
+            </div>
+            <button
+              class="see-project-btn"
+              data-project="10"
+              style="
+                background: #00ffcc;
+                color: #181818;
+                border: none;
+                padding: 0.4em 1.2em;
+                border-radius: 1em;
+                cursor: pointer;
+                font-size: 0.95rem;
+              "
+              aria-label="Open project details"
+            >
+              <a
+                href="projects/project-creative-animation.html"
+                style="color: inherit; text-decoration: none"
+                >See Project</a
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section
+      class="blog-section"
+      style="
+        background: linear-gradient(90deg, #181818 80%, #23272f 100%);
+        padding: 60px 0 40px 0;
+      "
+    >
+      <div class="container" style="max-width: 1100px; margin: 0 auto">
+        <h2
+          style="
+            text-align: center;
+            font-size: 2rem;
+            font-family: 'Syne', sans-serif;
+            color: #6366f1;
+            margin-bottom: 2.2rem;
+          "
+        >
+          Latest Blog Posts
+        </h2>
+        <div
+          class="blog-grid"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+          "
+        >
+          <div
+            class="blog-card"
+            data-blog="0"
+            style="
+              background: #181818;
+              border-radius: 1.2rem;
+              box-shadow: 0 4px 24px #00ffcc22;
+              overflow: hidden;
+              cursor: pointer;
+              transition: transform 0.2s;
+            "
+          >
+            <img
+              src="assets/img/random images/pexels-alexfu-1188750.jpg"
+              alt="Blog 1"
+              style="width: 100%; height: 160px; object-fit: cover"
+              loading="lazy"
+            />
+            <div style="padding: 1.2rem">
+              <div style="color: #fb923c; font-size: 0.98rem">May 30, 2025</div>
+              <h3
+                style="
+                  color: #fff;
+                  font-size: 1.2rem;
+                  margin: 0.5rem 0 0.3rem 0;
+                "
+              >
+                The Art of Storytelling in Video
+              </h3>
+              <p style="color: #aaa; font-size: 1rem">
+                Discover how narrative techniques can elevate your video
+                projects and engage audiences.
+              </p>
+            </div>
+          </div>
+          <div
+            class="blog-card"
+            data-blog="1"
+            style="
+              background: #181818;
+              border-radius: 1.2rem;
+              box-shadow: 0 4px 24px #00ffcc22;
+              overflow: hidden;
+              cursor: pointer;
+              transition: transform 0.2s;
+            "
+          >
+            <img
+              src="assets/img/random images/pexels-gezerasph-25753692.jpg"
+              alt="Blog 2"
+              style="width: 100%; height: 160px; object-fit: cover"
+              loading="lazy"
+            />
+            <div style="padding: 1.2rem">
+              <div style="color: #fb923c; font-size: 0.98rem">May 18, 2025</div>
+              <h3
+                style="
+                  color: #fff;
+                  font-size: 1.2rem;
+                  margin: 0.5rem 0 0.3rem 0;
+                "
+              >
+                Color Grading Secrets for Impact
+              </h3>
+              <p style="color: #aaa; font-size: 1rem">
+                Learn the tricks top editors use to make visuals pop and set the
+                mood in every frame.
+              </p>
+            </div>
+          </div>
+          <div
+            class="blog-card"
+            data-blog="2"
+            style="
+              background: #181818;
+              border-radius: 1.2rem;
+              box-shadow: 0 4px 24px #00ffcc22;
+              overflow: hidden;
+              cursor: pointer;
+              transition: transform 0.2s;
+            "
+          >
+            <img
+              src="assets/img/random images/pexels-maxavans-5059411.jpg"
+              alt="Blog 3"
+              style="width: 100%; height: 160px; object-fit: cover"
+              loading="lazy"
+            />
+            <div style="padding: 1.2rem">
+              <div style="color: #fb923c; font-size: 0.98rem">
+                April 29, 2025
+              </div>
+              <h3
+                style="
+                  color: #fff;
+                  font-size: 1.2rem;
+                  margin: 0.5rem 0 0.3rem 0;
+                "
+              >
+                Building a Brand with Motion Graphics
+              </h3>
+              <p style="color: #aaa; font-size: 1rem">
+                Explore how motion graphics can define your brand and create
+                lasting impressions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Blog Modal -->
+      <div
+        id="blog-modal"
+        style="
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.85);
+          z-index: 99999;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <div
+          id="blog-modal-content"
+          style="
+            background: #181818;
+            border-radius: 1.2rem;
+            max-width: 520px;
+            width: 90vw;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 8px 32px #00ffcc33;
+            max-height: 90vh;
+            overflow-y: auto;
+          "
+        >
+          <button
+            id="close-blog-modal"
+            style="
+              position: absolute;
+              top: 1rem;
+              right: 1rem;
+              background: none;
+              border: none;
+              font-size: 1.7rem;
+              color: #fb923c;
+              cursor: pointer;
+            "
+          >
+            &times;
+          </button>
+          <img
+            id="blog-modal-img"
+            src=""
+            alt="Blog"
+            style="
+              width: 100%;
+              border-radius: 0.7rem;
+              object-fit: cover;
+              max-height: 180px;
+            "
+          />
+          <div
+            id="blog-modal-date"
+            style="color: #fb923c; font-size: 0.98rem; margin-top: 1.2rem"
+          ></div>
+          <h3
+            id="blog-modal-title"
+            style="color: #fff; margin-top: 0.5rem"
+          ></h3>
+          <div
+            id="blog-modal-content-text"
+            style="color: #ccc; font-size: 1.05rem; margin-top: 1.2rem"
+          ></div>
+        </div>
+      </div>
+      <script>
+        // Blog Data
+        const blogs = [
+          {
+            img: "assets/img/random images/pexels-alexfu-1188750.jpg",
+            date: "May 30, 2025",
+            title: "The Art of Storytelling in Video",
+            excerpt:
+              "Discover how narrative techniques can elevate your video projects and engage audiences.",
+            content: `<p>Storytelling is at the heart of every great video. By weaving narrative elements—character, conflict, resolution—into your edits, you can create emotional resonance and keep viewers hooked. Whether it's a brand film or a YouTube vlog, the story is what people remember.</p><p>Tips:<ul><li>Start with a clear message.</li><li>Use pacing and music to build emotion.</li><li>Let visuals show, not just tell.</li></ul></p>`,
+          },
+          {
+            img: "assets/img/random images/pexels-gezerasph-25753692.jpg",
+            date: "May 18, 2025",
+            title: "Color Grading Secrets for Impact",
+            excerpt:
+              "Learn the tricks top editors use to make visuals pop and set the mood in every frame.",
+            content: `<p>Color grading transforms raw footage into cinematic art. Adjusting tones, contrast, and hues can evoke specific moods and guide the viewer's eye. Experiment with LUTs, but always fine-tune for your unique style.</p><p>Tips:<ul><li>Match shots for consistency.</li><li>Use color to highlight key moments.</li><li>Don't overdo saturation—subtlety is powerful.</li></ul></p>`,
+          },
+          {
+            img: "assets/img/random images/pexels-maxavans-5059411.jpg",
+            date: "April 29, 2025",
+            title: "Building a Brand with Motion Graphics",
+            excerpt:
+              "Explore how motion graphics can define your brand and create lasting impressions.",
+            content: `<p>Motion graphics are more than just moving shapes—they're a language. Use them to reinforce your brand's identity, explain concepts, or add energy to your videos. Consistency in style and animation builds recognition.</p><p>Tips:<ul><li>Stick to your brand colors and fonts.</li><li>Animate with purpose, not just for flair.</li><li>Keep intros/outros short and memorable.</li></ul></p>`,
+          },
+        ];
+        // Blog Modal Logic
+        document.querySelectorAll(".blog-card").forEach((card, i) => {
+          card.onclick = function () {
+            const b = blogs[i];
+            document.getElementById("blog-modal-img").src = b.img;
+            document.getElementById("blog-modal-date").textContent = b.date;
+            document.getElementById("blog-modal-title").textContent = b.title;
+            document.getElementById("blog-modal-content-text").innerHTML =
+              b.content;
+            document.getElementById("blog-modal").style.display = "flex";
+          };
+        });
+        document.getElementById("close-blog-modal").onclick = function () {
+          document.getElementById("blog-modal").style.display = "none";
+        };
+        window.onclick = function (e) {
+          if (e.target === document.getElementById("blog-modal")) {
+            document.getElementById("blog-modal").style.display = "none";
+          }
+        };
+      </script>
+    </section>
+  </body>
+</html>
+<!-- Large CSS and JS -->
+<link
+  href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&display=swap"
+  rel="stylesheet"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"
+  defer
+></script>
+
+<!-- Modern ClipCraft Footer -->
+<footer
+  style="
+    background: #181818;
+    color: #fff;
+    padding: 3rem 1rem 1.2rem 1rem;
+    margin-top: 3rem;
+  "
+>
+  <div
+    style="
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      align-items: start;
+    "
+  >
+    <div>
+      <img
+        src="assets/img/logo.png"
+        alt="ClipCraft Logo"
+        style="
+          width: 48px;
+          height: 48px;
+          border-radius: 12px;
+          margin-bottom: 0.7rem;
+        "
+      />
+      <h2
+        style="
+          font-family: 'Syne', sans-serif;
+          font-size: 1.3rem;
+          margin: 0 0 0.5rem 0;
+        "
+      >
+        ClipCraft
+      </h2>
+      <p style="color: #aaa; font-size: 1rem">
+        Creative video editing & motion graphics for brands, creators, and
+        businesses.
+      </p>
+    </div>
+    <div>
+      <h3
+        style="
+          font-family: 'Syne', sans-serif;
+          font-size: 1.1rem;
+          margin-bottom: 0.7rem;
+        "
+      >
+        Quick Links
+      </h3>
+      <ul style="list-style: none; padding: 0; margin: 0; line-height: 2">
+        <li>
+          <a href="index.html" style="color: #aaa; text-decoration: none"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a href="about.html" style="color: #aaa; text-decoration: none"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            href="service-detail.html"
+            style="color: #aaa; text-decoration: none"
+            >Services</a
+          >
+        </li>
+        <li>
+          <a href="project.html" style="color: #aaa; text-decoration: none"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a href="contact.html" style="color: #aaa; text-decoration: none"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3
+        style="
+          font-family: 'Syne', sans-serif;
+          font-size: 1.1rem;
+          margin-bottom: 0.7rem;
+        "
+      >
+        Contact
+      </h3>
+      <p style="color: #aaa; font-size: 1rem">info@clipcraft.com</p>
+      <p style="color: #aaa; font-size: 1rem">+254 700 000000</p>
+    </div>
+    <div>
+      <h3
+        style="
+          font-family: 'Syne', sans-serif;
+          font-size: 1.1rem;
+          margin-bottom: 0.7rem;
+        "
+      >
+        Follow Us
+      </h3>
+      <div style="display: flex; gap: 1.2rem">
+        <a href="#" style="color: #00ffcc; font-size: 1.5rem"
+          ><i class="bi bi-twitter"></i
+        ></a>
+        <a href="#" style="color: #6366f1; font-size: 1.5rem"
+          ><i class="bi bi-instagram"></i
+        ></a>
+        <a href="#" style="color: #fb923c; font-size: 1.5rem"
+          ><i class="bi bi-youtube"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+  <div
+    style="
+      text-align: center;
+      color: #444;
+      font-size: 0.98rem;
+      margin-top: 2.5rem;
+    "
+  >
+    &copy; 2025 ClipCraft. All rights reserved.
+  </div>
+</footer>
+
+<style>
+  @media (max-width: 768px) {
+    .mobile-home-icon {
+      display: inline-block !important;
+      vertical-align: middle;
+    }
+    .md\:hidden {
+      display: block !important;
+    }
+  }
+</style>

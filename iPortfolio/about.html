@@ -1,0 +1,2999 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - ClipCraft</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-bg-color: #0d0d0d;
+        --secondary-bg-color: #1a1a1a;
+        --card-bg-color: #222;
+        --text-color: #fff;
+        --light-text-color: #aaa;
+        --accent-color: #ff4d4d;
+        --accent-dark-color: #e60000;
+        --border-color: #333;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--primary-bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      /* Navbar Styles */
+      #navbar {
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 15, 15, 0.95),
+          rgba(25, 25, 25, 0.98)
+        );
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        height: 50px;
+        width: 75%;
+        max-width: 850px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 25px;
+        margin-top: 10px;
+        z-index: 9999;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        position: fixed;
+        top: 0;
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+        padding: 0 1rem;
+      }
+
+      .desktop-links {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-container img {
+        height: 24px !important;
+        width: 24px !important;
+        transition: transform 0.3s ease !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+      }
+
+      .logo-container span {
+        font-size: 1.1rem;
+      }
+
+      .cta-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+        color: white;
+        text-decoration: none;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.95rem;
+        opacity: 1;
+        visibility: visible;
+        display: inline-block;
+        border-radius: 15px;
+      }
+
+      .nav-link:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: #fb923c;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 2px;
+        background-color: #fb923c;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      .cta-button {
+        background: linear-gradient(270deg, #f59e0b, #e11d48, #6366f1);
+        background-size: 200% 200%;
+        animation: pulseBorder 2s infinite, gradientMotion 3s ease infinite;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        opacity: 1;
+        visibility: visible;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .cta-button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+      }
+
+      #mobileMenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(30, 30, 30, 0.95),
+          rgba(40, 40, 40, 0.98)
+        );
+        backdrop-filter: blur(8px);
+        border-radius: 0 0 15px 15px;
+        z-index: 9999;
+        padding: 0.4rem;
+        display: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        min-height: 160px;
+      }
+
+      #mobileMenu.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        animation: slideDown 0.3s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      #mobileMenu .nav-link {
+        font-size: 0.95rem;
+        padding: 0.3rem 0.6rem;
+        width: 90%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      #mobileMenu .nav-link:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+      }
+
+      #mobileMenu .nav-link:last-child {
+        border-bottom: none;
+      }
+
+      #mobileMenu .cta-button {
+        margin-top: 0.4rem;
+        width: 85%;
+        text-align: center;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.95rem;
+        background: linear-gradient(270deg, #f59e0b, #e11d48, #6366f1);
+        border: none;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      #mobileMenu .cta-button:hover {
+        transform: scale(1.02);
+      }
+
+      /* Mobile Menu Button */
+      #menuBtn {
+        background: none;
+        border: none;
+        padding: 0.3rem;
+        display: none;
+      }
+
+      #menuBtn i {
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .desktop-links,
+        .cta-container {
+          display: none !important;
+        }
+
+        .nav-container {
+          justify-content: space-between !important;
+        }
+
+        #menuBtn {
+          display: block !important;
+          cursor: pointer !important;
+          padding: 0.3rem !important;
+        }
+      }
+
+      @media (min-width: 769px) {
+        #menuBtn {
+          display: none !important;
+        }
+      }
+
+      @keyframes pulseBorder {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(251, 146, 60, 0);
+        }
+      }
+
+      @keyframes gradientMotion {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .hero {
+        position: relative;
+        height: 45vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+        overflow: hidden;
+        padding-top: 100px !important;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.9),
+          rgba(0, 0, 0, 0.5)
+        );
+        z-index: 1;
+      }
+
+      .hero img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 20px;
+        max-width: 600px;
+        margin-left: 20px;
+        margin-top: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5em;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, #ff1a1a, #ff6a00, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-content p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        color: var(--light-text-color);
+      }
+
+      .btn-primary {
+        background: linear-gradient(90deg, #ff1a1a, #ff6a00, #ffc107);
+        color: var(--text-color);
+        padding: 15px 30px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: transform 0.3s ease;
+        display: inline-block;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+      }
+
+      .about-section {
+        padding: 80px 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        background: linear-gradient(90deg, #facc15, #f472b6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .about-image {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .about-text {
+        padding: 2rem;
+      }
+
+      .about-text h3 {
+        color: #fb923c;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .about-text p {
+        color: #ccc;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        color: #fb923c;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        color: #ccc;
+        font-size: 1.1rem;
+      }
+
+      @media (max-width: 768px) {
+        .about-content {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s, transform 0.8s;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(60px);
+        transition: opacity 0.8s, transform 0.8s;
+      }
+      .fade-in-up.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .parallax-section {
+        position: relative;
+        z-index: 1;
+      }
+      .parallax-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .roadmap-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #23272f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #fb923c;
+        box-shadow: 0 2px 12px #6366f1aa;
+        z-index: 2;
+        transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .roadmap-icon:focus,
+      .roadmap-icon:hover {
+        box-shadow: 0 0 16px #fb923c, 0 0 32px #6366f1;
+        animation: bounceIcon 0.5s;
+        outline: none;
+      }
+      @keyframes bounceIcon {
+        0% {
+          transform: scale(1);
+        }
+        30% {
+          transform: scale(1.15);
+        }
+        60% {
+          transform: scale(0.95);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+        background: rgba(251, 146, 60, 0.3);
+        z-index: 3;
+      }
+      @keyframes ripple {
+        to {
+          transform: scale(2.5);
+          opacity: 0;
+        }
+      }
+      .confetti {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+      }
+      .confetti-piece {
+        position: absolute;
+        width: 8px;
+        height: 16px;
+        border-radius: 2px;
+        opacity: 0.8;
+      }
+
+      @media (max-width: 600px) {
+        /* Hero Section */
+        .hero {
+          height: 22vh !important;
+          min-height: 110px !important;
+          padding-top: 60px !important;
+        }
+        .hero-content h1 {
+          font-size: 1.3rem !important;
+          margin-bottom: 0.5rem !important;
+        }
+        .hero-content p {
+          font-size: 0.85rem !important;
+          margin-bottom: 0.7rem !important;
+        }
+        .btn-primary {
+          font-size: 0.85rem !important;
+          padding: 8px 16px !important;
+        }
+        /* About Section */
+        .about-section {
+          padding: 1.2rem 0.5rem !important;
+        }
+        .section-title h2 {
+          font-size: 1.1rem !important;
+        }
+        .about-content {
+          gap: 1.2rem !important;
+        }
+        .about-text h3 {
+          font-size: 1rem !important;
+        }
+        .about-text p {
+          font-size: 0.85rem !important;
+          margin-bottom: 0.7rem !important;
+        }
+        .stats-grid {
+          gap: 0.7rem !important;
+          margin-top: 1.2rem !important;
+        }
+        .stat-item {
+          padding: 0.7rem !important;
+        }
+        .stat-number {
+          font-size: 1.1rem !important;
+        }
+        .stat-label {
+          font-size: 0.85rem !important;
+        }
+        /* Skills Section */
+        .skills-section {
+          padding: 0.7rem 0.2rem !important;
+        }
+        .skills-section h2 {
+          font-size: 0.8rem !important;
+        }
+        .skills-grid {
+          display: flex !important;
+          flex-direction: row !important;
+          overflow-x: auto !important;
+          gap: 0.3rem !important;
+          margin-top: 0.5rem !important;
+          padding-bottom: 0.5rem !important;
+        }
+        .skill-card {
+          min-width: 54px !important;
+          min-height: 54px !important;
+          width: 54px !important;
+          height: 54px !important;
+          border-radius: 0.5rem !important;
+          padding: 0.2rem !important;
+          margin: 0 !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-shadow: 0 1px 4px #00ffcc22 !important;
+        }
+        .skill-label {
+          font-size: 0.6rem !important;
+          margin-top: 0.2rem !important;
+          text-align: center !important;
+          font-weight: 600 !important;
+        }
+        .skill-circle {
+          width: 28px !important;
+          height: 28px !important;
+          min-width: 28px !important;
+          min-height: 28px !important;
+        }
+        .skill-circle svg {
+          width: 28px !important;
+          height: 28px !important;
+        }
+        .skill-circle .skill-percent {
+          font-size: 0.6rem !important;
+        }
+        .skill-tooltip {
+          font-size: 0.6rem !important;
+          padding: 0.1rem 0.3rem !important;
+          border-radius: 0.3rem !important;
+        }
+        /* Team Section */
+        .team-section {
+          padding: 1.2rem 0.5rem !important;
+        }
+        .team-title {
+          font-size: 1.1rem !important;
+        }
+        .team-slider {
+          gap: 0.7rem !important;
+          padding: 1rem 0 !important;
+        }
+        .team-card {
+          min-width: 160px !important;
+          max-width: 180px !important;
+          padding: 0.7rem 0.5rem 0.7rem 0.5rem !important;
+        }
+        .team-name {
+          font-size: 0.95rem !important;
+        }
+        .team-role {
+          font-size: 0.8rem !important;
+        }
+        .team-bio,
+        .team-funfact {
+          font-size: 0.8rem !important;
+        }
+        .team-avatar {
+          width: 50px !important;
+          height: 50px !important;
+        }
+        /* Achievements Section */
+        .achievements-section {
+          padding: 1.2rem 0.5rem !important;
+        }
+        .achievements-title {
+          font-size: 1.1rem !important;
+        }
+        .achievements-wall {
+          gap: 0.7rem !important;
+        }
+        .achievement-card {
+          padding: 0.7rem !important;
+        }
+        .achievement-title {
+          font-size: 0.9rem !important;
+        }
+        .achievement-desc,
+        .achievement-stat,
+        .achievement-badge {
+          font-size: 0.8rem !important;
+        }
+        .achievement-icon {
+          font-size: 1.2rem !important;
+        }
+        /* Timeline Section */
+        .timeline-section {
+          padding: 1.2rem 0.5rem !important;
+        }
+        .timeline-section h2 {
+          font-size: 1.1rem !important;
+        }
+        .timeline-content h3 {
+          font-size: 0.9rem !important;
+        }
+        .timeline-content p,
+        .timeline-expand,
+        .timeline-expand .testimonial {
+          font-size: 0.8rem !important;
+        }
+        /* Awards Section */
+        .awards-section {
+          padding: 1.2rem 0.5rem !important;
+        }
+        .awards-section h2 {
+          font-size: 1.1rem !important;
+        }
+        .awards-grid img {
+          width: 60px !important;
+          height: 60px !important;
+        }
+        .award-title {
+          font-size: 0.8rem !important;
+        }
+        /* Roadmap Section */
+        .roadmap-section {
+          padding: 1.2rem 0.5rem !important;
+        }
+        .roadmap-section h2 {
+          font-size: 1.1rem !important;
+        }
+        .roadmap-title {
+          font-size: 0.9rem !important;
+        }
+        .roadmap-desc {
+          font-size: 0.8rem !important;
+        }
+        .roadmap-content {
+          padding: 0.7rem 1rem !important;
+        }
+        /* Footer */
+        .footer-section {
+          padding: 1.2rem 0.5rem !important;
+        }
+        .footer-section span,
+        .footer-section a {
+          font-size: 0.9rem !important;
+        }
+        .footer-section img {
+          width: 24px !important;
+          height: 24px !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #navbar {
+          height: 38px !important;
+          min-height: 0 !important;
+          padding: 0.1rem 0.2rem !important;
+          border-radius: 15px !important;
+          max-width: 99vw !important;
+        }
+        .logo-container img {
+          width: 18px !important;
+          height: 18px !important;
+        }
+        .logo-container span {
+          font-size: 0.9rem !important;
+        }
+        .cta-button {
+          font-size: 0.8rem !important;
+          padding: 0.15rem 0.5rem !important;
+          border-radius: 10px !important;
+        }
+        #menuBtn i,
+        .bi-list.text-xl,
+        .fa-bars,
+        .fa.fa-bars {
+          font-size: 1.1rem !important;
+          min-width: 1.1rem !important;
+          min-height: 1.1rem !important;
+          line-height: 1.1rem !important;
+        }
+        #menuBtn {
+          padding: 0.1rem !important;
+          min-width: 1.5rem !important;
+          min-height: 1.5rem !important;
+        }
+        #mobileMenu {
+          min-height: 100px !important;
+          padding: 0.2rem !important;
+          border-radius: 0 0 8px 8px !important;
+        }
+        #mobileMenu .nav-link,
+        #mobileMenu .cta-button {
+          font-size: 0.85rem !important;
+          padding: 0.2rem 0.4rem !important;
+          border-radius: 6px !important;
+        }
+        .roadmap-icon {
+          width: 32px !important;
+          height: 32px !important;
+          font-size: 1.1rem !important;
+          min-width: 32px !important;
+          min-height: 32px !important;
+          box-shadow: 0 1px 4px #6366f1aa !important;
+          margin: 0.2rem auto !important;
+          padding: 0 !important;
+        }
+        .roadmap-step {
+          padding: 0.5rem 0.2rem !important;
+        }
+        .roadmap-content,
+        .roadmap-title,
+        .roadmap-desc {
+          font-size: 0.85rem !important;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero-content h1 {
+          font-size: 2.2rem !important;
+          margin-bottom: 0.7rem !important;
+        }
+        .hero-content p {
+          font-size: 1.1rem !important;
+          margin-bottom: 1rem !important;
+        }
+      }
+      .fade-in,
+      .fade-in-up {
+        transition: opacity 0.3s, transform 0.3s !important;
+      }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "about.html"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <nav
+      aria-label="Breadcrumb"
+      style="background: #23272f; padding: 0.7rem 1rem; font-size: 0.98rem"
+    >
+      <ol
+        itemscope
+        itemtype="https://schema.org/BreadcrumbList"
+        style="
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        "
+      >
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <a
+            href="index.html"
+            itemprop="item"
+            style="color: #fb923c; text-decoration: none"
+            ><span itemprop="name">Home</span></a
+          >
+          <meta itemprop="position" content="1" />
+        </li>
+        <li style="color: #aaa">&gt;</li>
+        <li
+          itemprop="itemListElement"
+          itemscope
+          itemtype="https://schema.org/ListItem"
+        >
+          <span itemprop="name" style="color: #fff">About</span>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 z-[9999] py-1 px-4 shadow-lg">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="logo-container" id="logo">
+          <a
+            href="index.html"
+            class="mobile-home-icon"
+            style="display: none; margin-right: 0.5rem"
+            ><i class="fa fa-home" style="font-size: 1.3rem; color: #fb923c"></i
+          ></a>
+          <img
+            src="assets/img/my-profile-img.png"
+            alt="Logo"
+            class="h-8 w-8 rounded-full"
+          />
+          <span class="text-lg font-bold">ClipCraft</span>
+        </div>
+
+        <style>
+          @media (max-width: 768px) {
+            .mobile-home-icon {
+              display: inline-block !important;
+              vertical-align: middle;
+            }
+          }
+        </style>
+
+        <!-- Desktop Links -->
+        <div class="desktop-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="service-detail.html" class="nav-link">Services</a>
+          <a href="project.html" class="nav-link">Projects</a>
+          <a href="about.html" class="nav-link active">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="cta-container">
+          <a href="contact.html" class="cta-button">Hire me</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button
+            id="menuBtn"
+            class="text-white focus:outline-none"
+            style="
+              background: #111;
+              border-radius: 50%;
+              width: 36px;
+              height: 36px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0;
+              border: none;
+            "
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 22 22"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect y="4" width="22" height="2.5" rx="1.25" fill="#fff" />
+              <rect y="9.25" width="22" height="2.5" rx="1.25" fill="#fff" />
+              <rect y="14.5" width="22" height="2.5" rx="1.25" fill="#fff" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="service-detail.html" class="nav-link">Services</a>
+        <a href="project.html" class="nav-link">Projects</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="contact.html" class="cta-button">Hire me</a>
+      </div>
+    </nav>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuBtn.addEventListener("click", function () {
+          mobileMenu.classList.toggle("active");
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener("click", function (event) {
+          if (
+            !menuBtn.contains(event.target) &&
+            !mobileMenu.contains(event.target)
+          ) {
+            mobileMenu.classList.remove("active");
+          }
+        });
+      });
+    </script>
+
+    <section class="hero">
+      <img
+        src="assets/img/random images/pexels-amar-11025646.jpg"
+        alt="About Hero Background"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
+        "
+      />
+      <div class="hero-content">
+        <h1>About Us</h1>
+        <p>
+          Discover the story behind ClipCraft and our mission to transform your
+          creative vision into reality.
+        </p>
+        <a href="#about" class="btn-primary">Learn More</a>
+        <button
+          id="showreelBtn"
+          class="btn-primary"
+          style="
+            margin-left: 1rem;
+            background: linear-gradient(90deg, #6366f1, #e11d48, #f59e0b);
+          "
+        >
+          Watch Showreel
+        </button>
+      </div>
+    </section>
+    <!-- Showreel Modal -->
+    <div
+      id="showreelModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 99999;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div style="position: relative; width: 90vw; max-width: 700px">
+        <button
+          id="closeShowreel"
+          style="
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fb923c;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            z-index: 2;
+          "
+        >
+          &times;
+        </button>
+        <video
+          src="assets/video/reel.mp4"
+          controls
+          autoplay
+          style="width: 100%; border-radius: 1rem"
+        ></video>
+      </div>
+    </div>
+    <script>
+      // Showreel modal logic
+      document.addEventListener("DOMContentLoaded", function () {
+        const showreelBtn = document.getElementById("showreelBtn");
+        const showreelModal = document.getElementById("showreelModal");
+        const closeShowreel = document.getElementById("closeShowreel");
+        if (showreelBtn && showreelModal && closeShowreel) {
+          showreelBtn.addEventListener("click", function () {
+            showreelModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+          });
+          closeShowreel.addEventListener("click", function () {
+            showreelModal.style.display = "none";
+            document.body.style.overflow = "";
+          });
+          showreelModal.addEventListener("click", function (e) {
+            if (e.target === showreelModal) {
+              showreelModal.style.display = "none";
+              document.body.style.overflow = "";
+            }
+          });
+        }
+      });
+    </script>
+    <!-- /Showreel Modal -->
+    <!-- About Section -->
+    <section class="about-section parallax-section" data-parallax="0.2">
+      <div class="section-title fade-in">
+        <h2>About Us</h2>
+      </div>
+
+      <div class="about-content fade-in-up">
+        <div class="about-image">
+          <img
+            src="assets/img/random images/pexels-maxavans-5059411.jpg"
+            alt="About ClipCraft"
+          />
+        </div>
+
+        <div class="about-text">
+          <h3>Your Creative Partner in Video Production</h3>
+          <p>
+            At ClipCraft, we're passionate about transforming your vision into
+            compelling visual stories. With years of experience in video
+            editing, motion graphics, and visual effects, we've helped countless
+            clients achieve their creative goals.
+          </p>
+          <p>
+            Our team of skilled professionals combines technical expertise with
+            artistic vision to deliver high-quality content that engages and
+            inspires. Whether you need corporate videos, promotional content, or
+            creative storytelling, we're here to bring your ideas to life.
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number counter" data-target="300">0</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number counter" data-target="50">0</div>
+              <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number counter" data-target="5">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+              <div
+                class="stat-number counter"
+                data-target="100"
+                data-suffix="%"
+              >
+                0%
+              </div>
+              <div class="stat-label">Client Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Animated Skills/Tech Stack Section -->
+    <section
+      class="skills-section"
+      style="
+        background: linear-gradient(135deg, #181818 80%, #23272f 100%);
+        padding: 70px 0 60px 0;
+      "
+    >
+      <div class="container" style="max-width: 1200px; margin: 0 auto">
+        <h2
+          style="
+            text-align: center;
+            font-size: 2.2rem;
+            font-family: 'Syne', sans-serif;
+            background: linear-gradient(90deg, #00ffcc, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Our Skills
+        </h2>
+        <div
+          class="skills-grid"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.2rem;
+            margin-top: 2.5rem;
+          "
+        >
+          <div class="skill-card">
+            <div
+              class="skill-circle"
+              data-percent="95"
+              data-skill="Premiere Pro"
+            ></div>
+            <div class="skill-label">Premiere Pro</div>
+          </div>
+          <div class="skill-card">
+            <div
+              class="skill-circle"
+              data-percent="90"
+              data-skill="After Effects"
+            ></div>
+            <div class="skill-label">After Effects</div>
+          </div>
+          <div class="skill-card">
+            <div
+              class="skill-circle"
+              data-percent="85"
+              data-skill="Motion Graphics"
+            ></div>
+            <div class="skill-label">Motion Graphics</div>
+          </div>
+          <div class="skill-card">
+            <div
+              class="skill-circle"
+              data-percent="80"
+              data-skill="Storyboarding"
+            ></div>
+            <div class="skill-label">Storyboarding</div>
+          </div>
+          <div class="skill-card">
+            <div
+              class="skill-circle"
+              data-percent="88"
+              data-skill="Color Grading"
+            ></div>
+            <div class="skill-label">Color Grading</div>
+          </div>
+        </div>
+      </div>
+      <style>
+        .skills-grid {
+          margin-top: 2.5rem;
+        }
+        .skill-card {
+          background: #23272f;
+          border-radius: 1.5rem;
+          box-shadow: 0 4px 24px #00ffcc22;
+          padding: 2.2rem 1.5rem 1.7rem 1.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+          transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .skill-card:hover {
+          box-shadow: 0 8px 40px #fb923c55;
+          transform: scale(1.04) rotate(-1deg);
+        }
+        .skill-label {
+          color: #fb923c;
+          font-size: 1.15rem;
+          font-weight: 700;
+          margin-top: 1.2rem;
+          text-align: center;
+        }
+        .skill-circle {
+          width: 110px;
+          height: 110px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .skill-circle svg {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .skill-circle .skill-percent {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #00ffcc;
+          z-index: 2;
+        }
+        .skill-circle:hover .skill-tooltip {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .skill-tooltip {
+          position: absolute;
+          bottom: 120%;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #23272f;
+          color: #fff;
+          padding: 0.6rem 1.2rem;
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px #6366f1aa;
+          font-size: 1rem;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s;
+          white-space: nowrap;
+          z-index: 10;
+        }
+      </style>
+      <script>
+        // Animated circular skill charts
+        function animateSkillCircles() {
+          document.querySelectorAll(".skill-circle").forEach(function (el) {
+            const percent = parseInt(el.getAttribute("data-percent"));
+            const skill = el.getAttribute("data-skill");
+            el.innerHTML = `<svg width="110" height="110"><circle cx="55" cy="55" r="48" stroke="#333" stroke-width="10" fill="none"/><circle cx="55" cy="55" r="48" stroke="#00ffcc" stroke-width="10" fill="none" stroke-dasharray="${
+              2 * Math.PI * 48
+            }" stroke-dashoffset="${
+              2 * Math.PI * 48
+            }" style="transition:stroke-dashoffset 1.2s cubic-bezier(0.77,0,0.18,1);"/></svg><span class="skill-percent">0%</span><div class="skill-tooltip">${skill}: ${percent}%</div>`;
+            const circle = el.querySelectorAll("circle")[1];
+            const percentEl = el.querySelector(".skill-percent");
+            setTimeout(() => {
+              circle.style.strokeDashoffset =
+                2 * Math.PI * 48 * (1 - percent / 100);
+              let start = 0;
+              const end = percent;
+              const duration = 1200;
+              let startTime = null;
+              function animate(ts) {
+                if (!startTime) startTime = ts;
+                const progress = Math.min((ts - startTime) / duration, 1);
+                percentEl.textContent =
+                  Math.floor(progress * (end - start) + start) + "%";
+                if (progress < 1) requestAnimationFrame(animate);
+                else percentEl.textContent = end + "%";
+              }
+              requestAnimationFrame(animate);
+            }, 300);
+          });
+        }
+        window.addEventListener("DOMContentLoaded", animateSkillCircles);
+      </script>
+    </section>
+    <!-- /Animated Skills/Tech Stack Section -->
+
+    <!-- Resume Download/Modal Section -->
+    <section
+      class="resume-section fade-in"
+      style="text-align: center; padding: 40px 0 0 0"
+    >
+      <button
+        id="resumeBtn"
+        class="btn-primary"
+        style="font-size: 1.1rem; padding: 0.7rem 2.2rem; margin-bottom: 1.5rem"
+      >
+        Download Resume
+      </button>
+      <button
+        id="resumeModalBtn"
+        class="btn-primary"
+        style="
+          font-size: 1.1rem;
+          padding: 0.7rem 2.2rem;
+          margin-left: 1rem;
+          margin-bottom: 1.5rem;
+          background: linear-gradient(90deg, #6366f1, #e11d48, #f59e0b);
+        "
+      >
+        View Interactive Resume
+      </button>
+      <a
+        id="resumeDownload"
+        href="assets/img/random images/pexels-amar-11025646.jpg"
+        download="ClipCraft-Resume.pdf"
+        style="display: none"
+      ></a>
+    </section>
+    <!-- Resume Modal -->
+    <div
+      id="resumeModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 99999;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          position: relative;
+          width: 90vw;
+          max-width: 700px;
+          background: #23272f;
+          padding: 2.5rem 1.5rem 2rem 1.5rem;
+          border-radius: 1.5rem;
+          box-shadow: 0 8px 32px #fb923c22;
+        "
+      >
+        <button
+          id="closeResumeModal"
+          style="
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fb923c;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            z-index: 2;
+          "
+        >
+          &times;
+        </button>
+        <h2
+          style="
+            text-align: center;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(90deg, #fb923c, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Interactive Resume
+        </h2>
+        <ul
+          style="
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 2;
+            list-style: none;
+            padding: 0;
+          "
+        >
+          <li><b>Lead Editor</b> at ClipCraft (2020–Present)</li>
+          <li><b>Motion Graphics Designer</b> at CreativeStudio (2018–2020)</li>
+          <li><b>Brand Designer</b> at Brandify (2016–2018)</li>
+          <li><b>Education:</b> B.A. in Media Arts, Creative University</li>
+          <li>
+            <b>Certifications:</b> Adobe Certified Expert, Motion Design Pro
+          </li>
+        </ul>
+        <div style="text-align: center; margin-top: 1.5rem">
+          <a
+            href="assets/img/random images/pexels-amar-11025646.jpg"
+            download="ClipCraft-Resume.pdf"
+            class="btn-primary"
+            >Download PDF</a
+          >
+        </div>
+      </div>
+    </div>
+    <script>
+      // Resume download and modal logic
+      document.addEventListener("DOMContentLoaded", function () {
+        const resumeBtn = document.getElementById("resumeBtn");
+        const resumeDownload = document.getElementById("resumeDownload");
+        const resumeModalBtn = document.getElementById("resumeModalBtn");
+        const resumeModal = document.getElementById("resumeModal");
+        const closeResumeModal = document.getElementById("closeResumeModal");
+        if (resumeBtn && resumeDownload) {
+          resumeBtn.addEventListener("click", function () {
+            resumeDownload.click();
+          });
+        }
+        if (resumeModalBtn && resumeModal && closeResumeModal) {
+          resumeModalBtn.addEventListener("click", function () {
+            resumeModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+          });
+          closeResumeModal.addEventListener("click", function () {
+            resumeModal.style.display = "none";
+            document.body.style.overflow = "";
+          });
+          resumeModal.addEventListener("click", function (e) {
+            if (e.target === resumeModal) {
+              resumeModal.style.display = "none";
+              document.body.style.overflow = "";
+            }
+          });
+        }
+      });
+    </script>
+    <!-- /Resume Download/Modal Section -->
+
+    <!-- Animated Team/Creators Section -->
+    <section
+      class="team-section parallax-section"
+      style="
+        background: linear-gradient(135deg, #181818 80%, #23272f 100%);
+        padding: 80px 0 60px 0;
+      "
+    >
+      <div class="container" style="max-width: 1200px; margin: 0 auto">
+        <h2
+          class="team-title fade-in"
+          style="
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: 'Syne', sans-serif;
+            background: linear-gradient(90deg, #fb923c, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Meet the Creators
+        </h2>
+        <div class="team-slider" id="team-slider">
+          <!-- Team cards will be rendered by JS -->
+        </div>
+      </div>
+      <style>
+        .team-slider {
+          display: flex;
+          gap: 2.5rem;
+          overflow-x: auto;
+          padding: 2.5rem 0;
+          scroll-snap-type: x mandatory;
+        }
+        .team-card {
+          background: rgba(24, 24, 24, 0.98);
+          border-radius: 2rem;
+          box-shadow: 0 8px 32px #fb923c22;
+          min-width: 320px;
+          max-width: 340px;
+          flex: 0 0 340px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 2.5rem 1.5rem 2rem 1.5rem;
+          margin: 0 0.5rem;
+          position: relative;
+          transition: transform 0.4s cubic-bezier(0.77, 0, 0.18, 1),
+            box-shadow 0.4s;
+          scroll-snap-align: center;
+          cursor: pointer;
+        }
+        .team-card:hover {
+          transform: rotateY(8deg) scale(1.04);
+          box-shadow: 0 12px 48px #6366f1aa;
+          z-index: 2;
+        }
+        .team-avatar {
+          width: 110px;
+          height: 110px;
+          border-radius: 50%;
+          object-fit: cover;
+          box-shadow: 0 0 24px #fb923c55, 0 0 48px #6366f133;
+          margin-bottom: 1.2rem;
+          border: 3px solid #6366f1;
+          background: #111;
+        }
+        .team-name {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: #fff;
+          margin-bottom: 0.2rem;
+        }
+        .team-role {
+          color: #fb923c;
+          font-size: 1.05rem;
+          margin-bottom: 0.7rem;
+        }
+        .team-bio {
+          color: #ccc;
+          font-size: 1rem;
+          margin-bottom: 1.2rem;
+          text-align: center;
+        }
+        .team-socials {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 0.5rem;
+        }
+        .team-socials a {
+          color: #6366f1;
+          font-size: 1.3rem;
+          transition: color 0.2s;
+        }
+        .team-socials a:hover {
+          color: #fb923c;
+        }
+        .team-funfact {
+          color: #00ffcc;
+          font-size: 1rem;
+          margin-top: 0.5rem;
+          text-align: center;
+        }
+        @media (max-width: 900px) {
+          .team-slider {
+            gap: 1.2rem;
+          }
+          .team-card {
+            min-width: 260px;
+            max-width: 270px;
+            padding: 1.5rem 0.7rem 1.2rem 0.7rem;
+          }
+        }
+      </style>
+      <script>
+        const teamData = [
+          {
+            name: "Alex Johnson",
+            role: "Lead Editor",
+            img: "assets/img/random images/pexels-lulizler-3165335.jpg",
+            bio: "Cinematic storyteller & motion wizard.",
+            socials: { twitter: "#", linkedin: "#", instagram: "#" },
+            funfact: "Can edit a viral TikTok in 30 min!",
+          },
+          {
+            name: "Samantha Lee",
+            role: "Brand Designer",
+            img: "assets/img/random images/pexels-alexfu-1188750.jpg",
+            bio: "Designs that pop and convert.",
+            socials: { twitter: "#", linkedin: "#", instagram: "#" },
+            funfact: "Once designed a logo in a hot air balloon.",
+          },
+          {
+            name: "Daniel Ouma",
+            role: "Motion Graphics",
+            img: "assets/img/random images/pexels-cottonbro-3296434 (1).jpg",
+            bio: "Brings static to life with animation.",
+            socials: { twitter: "#", linkedin: "#", instagram: "#" },
+            funfact: "Can animate with his eyes closed (almost).",
+          },
+          {
+            name: "Priya Patel",
+            role: "Content Strategist",
+            img: "assets/img/random images/pexels-gezerasph-25753692.jpg",
+            bio: "Knows what makes content go viral.",
+            socials: { twitter: "#", linkedin: "#", instagram: "#" },
+            funfact: "Has a meme for every occasion.",
+          },
+        ];
+        function renderTeam() {
+          const slider = document.getElementById("team-slider");
+          slider.innerHTML = "";
+          teamData.forEach((t, idx) => {
+            const card = document.createElement("div");
+            card.className = "team-card";
+            card.innerHTML = `
+              <img src="${t.img}" alt="${t.name}" class="team-avatar" />
+              <div class="team-name">${t.name}</div>
+              <div class="team-role">${t.role}</div>
+              <div class="team-bio">${t.bio}</div>
+              <div class="team-socials">
+                <a href="${t.socials.twitter}" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="${t.socials.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="${t.socials.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>
+              </div>
+              <div class="team-funfact"><i class="fas fa-lightbulb"></i> ${t.funfact}</div>
+            `;
+            card.addEventListener("click", function () {
+              showTeamModal(idx);
+            });
+            slider.appendChild(card);
+          });
+        }
+        renderTeam();
+        // Team member modal
+        function showTeamModal(idx) {
+          const t = teamData[idx];
+          let modal = document.getElementById("teamModal");
+          if (!modal) {
+            modal = document.createElement("div");
+            modal.id = "teamModal";
+            modal.style =
+              "display:flex;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:99999;align-items:center;justify-content:center;";
+            modal.innerHTML = `<div style="position:relative;width:90vw;max-width:500px;background:#23272f;padding:2.5rem 1.5rem 2rem 1.5rem;border-radius:1.5rem;box-shadow:0 8px 32px #fb923c22;">
+              <button id="closeTeamModal" style="position:absolute;top:10px;right:10px;background:#fb923c;border:none;color:#fff;font-size:1.5rem;border-radius:50%;width:36px;height:36px;cursor:pointer;z-index:2;">&times;</button>
+              <img src="${t.img}" alt="${t.name}" style="width:110px;height:110px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 1.2rem auto;border:3px solid #6366f1;" />
+              <div style="text-align:center;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:0.2rem;">${t.name}</div>
+              <div style="text-align:center;color:#fb923c;font-size:1.05rem;margin-bottom:0.7rem;">${t.role}</div>
+              <div style="color:#ccc;font-size:1rem;margin-bottom:1.2rem;text-align:center;">${t.bio}</div>
+              <div style="text-align:center;margin-bottom:1rem;">
+                <a href="${t.socials.twitter}" target="_blank"><i class="fab fa-twitter" style="color:#6366f1;font-size:1.3rem;margin:0 0.5rem;"></i></a>
+                <a href="${t.socials.linkedin}" target="_blank"><i class="fab fa-linkedin" style="color:#6366f1;font-size:1.3rem;margin:0 0.5rem;"></i></a>
+                <a href="${t.socials.instagram}" target="_blank"><i class="fab fa-instagram" style="color:#6366f1;font-size:1.3rem;margin:0 0.5rem;"></i></a>
+              </div>
+              <div style="color:#00ffcc;font-size:1rem;margin-top:0.5rem;text-align:center;">${t.funfact}</div>
+              <div style="margin-top:1.5rem;text-align:center;">
+                <video src="assets/video/reel.mp4" controls style="width:100%;border-radius:1rem;"></video>
+              </div>
+            </div>`;
+            document.body.appendChild(modal);
+          } else {
+            modal.innerHTML = `<div style=\"position:relative;width:90vw;max-width:500px;background:#23272f;padding:2.5rem 1.5rem 2rem 1.5rem;border-radius:1.5rem;box-shadow:0 8px 32px #fb923c22;\">
+              <button id=\"closeTeamModal\" style=\"position:absolute;top:10px;right:10px;background:#fb923c;border:none;color:#fff;font-size:1.5rem;border-radius:50%;width:36px;height:36px;cursor:pointer;z-index:2;\">&times;</button>
+              <img src=\"${t.img}\" alt=\"${t.name}\" style=\"width:110px;height:110px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 1.2rem auto;border:3px solid #6366f1;\" />
+              <div style=\"text-align:center;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:0.2rem;\">${t.name}</div>
+              <div style=\"text-align:center;color:#fb923c;font-size:1.05rem;margin-bottom:0.7rem;\">${t.role}</div>
+              <div style=\"color:#ccc;font-size:1rem;margin-bottom:1.2rem;text-align:center;\">${t.bio}</div>
+              <div style=\"text-align:center;margin-bottom:1rem;\">
+                <a href=\"${t.socials.twitter}\" target=\"_blank\"><i class=\"fab fa-twitter\" style=\"color:#6366f1;font-size:1.3rem;margin:0 0.5rem;\"></i></a>
+                <a href=\"${t.socials.linkedin}\" target=\"_blank\"><i class=\"fab fa-linkedin\" style=\"color:#6366f1;font-size:1.3rem;margin:0 0.5rem;\"></i></a>
+                <a href=\"${t.socials.instagram}\" target=\"_blank\"><i class=\"fab fa-instagram\" style=\"color:#6366f1;font-size:1.3rem;margin:0 0.5rem;\"></i></a>
+              </div>
+              <div style=\"color:#00ffcc;font-size:1rem;margin-top:0.5rem;text-align:center;\">${t.funfact}</div>
+              <div style=\"margin-top:1.5rem;text-align:center;\">
+                <video src=\"assets/video/reel.mp4\" controls style=\"width:100%;border-radius:1rem;\"></video>
+              </div>
+            </div>`;
+            modal.style.display = "flex";
+          }
+          document.body.style.overflow = "hidden";
+          modal.onclick = function (e) {
+            if (e.target === modal || e.target.id === "closeTeamModal") {
+              modal.style.display = "none";
+              document.body.style.overflow = "";
+            }
+          };
+        }
+      </script>
+    </section>
+    <!-- /Animated Team/Creators Section -->
+
+    <!-- Interactive Achievements/Stats Wall -->
+    <section
+      class="achievements-section parallax-section"
+      style="
+        background: linear-gradient(135deg, #181818 80%, #0a0a0a 100%);
+        padding: 70px 0 60px 0;
+      "
+    >
+      <div
+        class="container fade-in-up"
+        style="max-width: 1200px; margin: 0 auto"
+      >
+        <h2
+          class="achievements-title"
+          style="
+            text-align: center;
+            font-size: 2.2rem;
+            font-family: 'Syne', sans-serif;
+            background: linear-gradient(90deg, #00ffcc, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Our Achievements
+        </h2>
+        <div class="achievements-wall" id="achievements-wall"></div>
+      </div>
+      <style>
+        .achievements-wall {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 2.2rem;
+          margin-top: 2.5rem;
+        }
+        .achievement-card {
+          background: #23272f;
+          border-radius: 1.5rem;
+          box-shadow: 0 4px 24px #00ffcc22;
+          padding: 2.2rem 1.5rem 1.7rem 1.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+          transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .achievement-card:hover {
+          box-shadow: 0 8px 40px #fb923c55;
+          transform: scale(1.04) rotate(-1deg);
+        }
+        .achievement-icon {
+          font-size: 2.5rem;
+          color: #00ffcc;
+          margin-bottom: 1.1rem;
+          text-shadow: 0 0 12px #fb923c;
+        }
+        .achievement-title {
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: #fff;
+          margin-bottom: 0.5rem;
+          text-align: center;
+        }
+        .achievement-desc {
+          color: #ccc;
+          font-size: 1rem;
+          text-align: center;
+          margin-bottom: 0.7rem;
+        }
+        .achievement-stat {
+          color: #fb923c;
+          font-size: 1.3rem;
+          font-weight: 800;
+          margin-bottom: 0.2rem;
+        }
+        .achievement-badge {
+          position: absolute;
+          top: 18px;
+          right: 18px;
+          background: linear-gradient(90deg, #fb923c, #6366f1);
+          color: #fff;
+          font-size: 0.95rem;
+          font-weight: 700;
+          padding: 0.4rem 1.1rem;
+          border-radius: 1rem;
+          box-shadow: 0 0 12px #6366f1;
+        }
+        @media (max-width: 900px) {
+          .achievements-wall {
+            gap: 1.1rem;
+          }
+          .achievement-card {
+            padding: 1.2rem 0.7rem 1rem 0.7rem;
+          }
+        }
+      </style>
+      <script>
+        const achievementsData = [
+          {
+            icon: '<i class="fas fa-trophy"></i>',
+            img: "assets/img/random images/pexels-amar-11025646.jpg",
+            title: "Awards Won",
+            desc: "Recognized for creative excellence in editing & design.",
+            stat: "7",
+            badge: "Top Award",
+          },
+          {
+            icon: '<i class="fas fa-users"></i>',
+            img: "assets/img/random images/pexels-lulizler-3165335.jpg",
+            title: "Clients Worldwide",
+            desc: "Brands & creators from 15+ countries.",
+            stat: "120+",
+            badge: "Global",
+          },
+          {
+            icon: '<i class="fas fa-bolt"></i>',
+            img: "assets/img/random images/pexels-alexfu-1188750.jpg",
+            title: "Viral Videos",
+            desc: "Projects that hit millions of views.",
+            stat: "18",
+            badge: "Viral",
+          },
+          {
+            icon: '<i class="fas fa-heart"></i>',
+            img: "assets/img/random images/pexels-gezerasph-25753692.jpg",
+            title: "Positive Reviews",
+            desc: "Consistent 5-star feedback from happy clients.",
+            stat: "100%",
+            badge: "5-Star",
+          },
+          {
+            icon: '<i class="fas fa-brain"></i>',
+            img: "assets/img/random images/pexels-maxavans-5059411.jpg",
+            title: "Creative Ideas",
+            desc: "Unique concepts delivered every month.",
+            stat: "50+",
+            badge: "Innovation",
+          },
+          {
+            icon: '<i class="fas fa-clock"></i>',
+            img: "assets/img/random images/pexels-alexfu-1188751.jpg",
+            title: "Fast Turnaround",
+            desc: "Average delivery time for projects.",
+            stat: "48h",
+            badge: "Speed",
+          },
+        ];
+        function renderAchievements() {
+          const wall = document.getElementById("achievements-wall");
+          wall.innerHTML = "";
+          achievementsData.forEach((a) => {
+            const card = document.createElement("div");
+            card.className = "achievement-card";
+            card.innerHTML = `
+              <img src="${a.img}" alt="${
+              a.title
+            }" style="width:80px;height:80px;object-fit:cover;border-radius:0.7rem;margin-bottom:1rem;box-shadow:0 2px 12px #6366f1aa;" />
+              <div class="achievement-icon">${a.icon}</div>
+              <div class="achievement-title">${a.title}</div>
+              <div class="achievement-desc">${a.desc}</div>
+              <div class="achievement-stat counter" data-target="${a.stat.replace(
+                /\D/g,
+                ""
+              )}"${a.stat.includes("%") ? ' data-suffix="%"' : ""}>0${
+              a.stat.includes("%") ? "%" : ""
+            }</div>
+              <div class="achievement-badge">${a.badge}</div>
+            `;
+            wall.appendChild(card);
+          });
+        }
+        renderAchievements();
+        // Animated counters (shared for all counters)
+        function animateCounters() {
+          document.querySelectorAll(".counter").forEach((el) => {
+            if (el.dataset.animated) return;
+            const target = parseInt(el.getAttribute("data-target"));
+            const suffix = el.getAttribute("data-suffix") || "";
+            let start = 0;
+            const duration = 1200;
+            let startTime = null;
+            function animate(ts) {
+              if (!startTime) startTime = ts;
+              const progress = Math.min((ts - startTime) / duration, 1);
+              el.textContent =
+                Math.floor(progress * (target - start) + start) + suffix;
+              if (progress < 1) requestAnimationFrame(animate);
+              else el.textContent = target + suffix;
+            }
+            // Use IntersectionObserver for on-scroll
+            const observer = new window.IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    el.dataset.animated = "true";
+                    requestAnimationFrame(animate);
+                    observer.unobserve(el);
+                  }
+                });
+              },
+              { threshold: 0.5 }
+            );
+            observer.observe(el);
+          });
+        }
+        window.addEventListener("DOMContentLoaded", animateCounters);
+      </script>
+    </section>
+    <!-- /Interactive Achievements/Stats Wall -->
+
+    <!-- Interactive Timeline Section -->
+    <section
+      class="timeline-section"
+      style="
+        background: #0a0a0a;
+        color: #fff;
+        padding: 4rem 2rem;
+        font-family: 'Syne', Arial, sans-serif;
+      "
+    >
+      <div style="max-width: 900px; margin: 0 auto">
+        <h2
+          style="
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            background: linear-gradient(90deg, #fb923c, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+          "
+        >
+          Our Journey
+        </h2>
+        <div class="timeline" id="interactive-timeline">
+          <!-- Timeline items will be rendered by JS -->
+        </div>
+      </div>
+      <style>
+        .timeline {
+          position: relative;
+          margin: 0 auto;
+          padding-left: 30px;
+          border-left: 3px solid #333;
+        }
+        .timeline-item {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 2.5rem;
+          opacity: 0;
+          transform: translateY(40px);
+          transition: all 0.8s cubic-bezier(0.77, 0, 0.18, 1);
+          cursor: pointer;
+        }
+        .timeline-item.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .timeline-icon {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          font-size: 1.6rem;
+          margin-right: 1.5rem;
+          box-shadow: 0 0 16px #fb923c55;
+          flex-shrink: 0;
+        }
+        .timeline-content {
+          flex: 1;
+        }
+        .timeline-content h3 {
+          margin: 0 0 0.5rem 0;
+          font-size: 1.25rem;
+          color: #fb923c;
+        }
+        .timeline-content p {
+          margin: 0;
+          color: #ccc;
+          font-size: 1rem;
+        }
+        .timeline-expand {
+          margin-top: 1rem;
+          display: none;
+          background: #181818;
+          border-radius: 1rem;
+          padding: 1.2rem;
+          box-shadow: 0 2px 12px #6366f1aa;
+        }
+        .timeline-item.expanded .timeline-expand {
+          display: block;
+        }
+        .timeline-item.expanded {
+          background: #23272f44;
+          border-radius: 1rem;
+        }
+        .timeline-expand img,
+        .timeline-expand video {
+          max-width: 100%;
+          border-radius: 0.7rem;
+          margin-bottom: 0.7rem;
+        }
+        .timeline-expand .testimonial {
+          background: #23272f;
+          color: #fff;
+          border-radius: 0.7rem;
+          padding: 0.8rem 1.2rem;
+          margin-top: 0.7rem;
+          font-style: italic;
+        }
+        @media (max-width: 600px) {
+          .timeline {
+            padding-left: 10px;
+          }
+          .timeline-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 1.1rem;
+            margin-right: 0.7rem;
+          }
+          .timeline-content h3 {
+            font-size: 1rem;
+          }
+        }
+      </style>
+      <script>
+        const timelineData = [
+          {
+            icon: '<i class="fas fa-lightbulb"></i>',
+            color: "#fb923c",
+            title: "Founded",
+            desc: "ClipCraft was born from a passion for storytelling and a vision to make world-class editing accessible to all.",
+            expand: {
+              img: "assets/img/portfolio/branding-1.jpg",
+              testimonial:
+                "“ClipCraft brought our vision to life with stunning edits!” – Client A",
+            },
+          },
+          {
+            icon: '<i class="fas fa-users"></i>',
+            color: "#6366f1",
+            title: "First Team",
+            desc: "We assembled a team of creative editors, motion designers, and storytellers to deliver unique results.",
+            expand: {
+              img: "assets/img/portfolio/branding-2.jpg",
+              testimonial: "“The team's creativity is unmatched.” – Client B",
+            },
+          },
+          {
+            icon: '<i class="fas fa-rocket"></i>',
+            color: "#fb923c",
+            title: "First Viral Project",
+            desc: "Our edits helped a client go viral, earning millions of views and launching our reputation for impact.",
+            expand: {
+              video: "assets/video/reel.mp4",
+              testimonial:
+                "“Our video went viral thanks to ClipCraft!” – Client C",
+            },
+          },
+          {
+            icon: '<i class="fas fa-award"></i>',
+            color: "#6366f1",
+            title: "Global Clients",
+            desc: "We expanded to serve brands and creators worldwide, building long-term partnerships and trust.",
+            expand: {
+              img: "assets/img/portfolio/branding-3.jpg",
+              testimonial:
+                "“Professional and reliable, every time.” – Client D",
+            },
+          },
+          {
+            icon: '<i class="fas fa-star"></i>',
+            color: "#fb923c",
+            title: "Today",
+            desc: "We continue to innovate, helping clients stand out with cinematic edits and creative storytelling.",
+            expand: {
+              img: "assets/img/services.jpg",
+              testimonial:
+                "“ClipCraft is our go-to for creative video.” – Client E",
+            },
+          },
+        ];
+        function renderTimeline() {
+          const timeline = document.getElementById("interactive-timeline");
+          timeline.innerHTML = "";
+          timelineData.forEach((item, idx) => {
+            const div = document.createElement("div");
+            div.className = "timeline-item fade-step";
+            div.innerHTML = `
+              <div class="timeline-icon" style="background:${item.color}">${
+              item.icon
+            }</div>
+              <div class="timeline-content">
+                <h3>${item.title}</h3>
+                <p>${item.desc}</p>
+                <div class="timeline-expand">
+                  ${
+                    item.expand.img
+                      ? `<img src="${item.expand.img}" alt="${item.title}" />`
+                      : ""
+                  }
+                  ${
+                    item.expand.video
+                      ? `<video src="${item.expand.video}" controls style="width:100%;border-radius:0.7rem;"></video>`
+                      : ""
+                  }
+                  ${
+                    item.expand.testimonial
+                      ? `<div class="testimonial">${item.expand.testimonial}</div>`
+                      : ""
+                  }
+                </div>
+              </div>
+            `;
+            div.addEventListener("click", function (e) {
+              if (!div.classList.contains("expanded")) {
+                document
+                  .querySelectorAll(".timeline-item.expanded")
+                  .forEach((el) => el.classList.remove("expanded"));
+                div.classList.add("expanded");
+              } else {
+                div.classList.remove("expanded");
+              }
+            });
+            timeline.appendChild(div);
+          });
+        }
+        renderTimeline();
+        // Animate timeline items on scroll
+        document.addEventListener("DOMContentLoaded", function () {
+          const items = document.querySelectorAll(".timeline-item");
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("show");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1 }
+          );
+          items.forEach((item) => observer.observe(item));
+        });
+      </script>
+    </section>
+    <!-- /Interactive Timeline Section -->
+
+    <!-- Awards & Certifications Gallery Section -->
+    <section
+      class="awards-section parallax-section"
+      style="
+        background: linear-gradient(135deg, #181818 80%, #23272f 100%);
+        padding: 70px 0 60px 0;
+      "
+    >
+      <div
+        class="container fade-in-up"
+        style="max-width: 1200px; margin: 0 auto"
+      >
+        <h2
+          style="
+            text-align: center;
+            font-size: 2.2rem;
+            font-family: 'Syne', sans-serif;
+            background: linear-gradient(90deg, #fb923c, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Awards & Certifications
+        </h2>
+        <div
+          class="awards-grid"
+          id="awards-grid"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2.2rem;
+            margin-top: 2.5rem;
+            justify-items: center;
+            align-items: center;
+          "
+        ></div>
+      </div>
+      <style>
+        .awards-grid img {
+          width: 120px;
+          height: 120px;
+          object-fit: cover;
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px #6366f1aa;
+          transition: transform 0.3s, box-shadow 0.3s;
+          cursor: pointer;
+        }
+        .awards-grid img:hover {
+          transform: scale(1.12);
+          box-shadow: 0 8px 32px #fb923c88;
+          z-index: 2;
+        }
+        .award-title {
+          text-align: center;
+          color: #fb923c;
+          font-weight: 700;
+          margin-top: 0.7rem;
+        }
+      </style>
+      <div
+        id="awardModal"
+        style="
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.85);
+          z-index: 99999;
+          align-items: center;
+          justify-content: center;
+        "
+      ></div>
+      <script>
+        const awardsData = [
+          {
+            img: "assets/img/random images/pexels-alexfu-1188750.jpg",
+            title: "Excellence in Editing",
+            desc: "Recognized for editing excellence in branded content.",
+          },
+          {
+            img: "assets/img/random images/pexels-gezerasph-25753692.jpg",
+            title: "Innovation in Motion",
+            desc: "Awarded for innovative use of motion graphics.",
+          },
+          {
+            img: "assets/img/random images/pexels-maxavans-5059411.jpg",
+            title: "Brand Excellence Prize",
+            desc: "Awarded for brand storytelling and campaign success.",
+          },
+          {
+            img: "assets/img/random images/pexels-alexfu-1188751.jpg",
+            title: "Creative Vision Award",
+            desc: "For visionary direction in creative projects.",
+          },
+          {
+            img: "assets/img/random images/pexels-pixabay-257904.jpg",
+            title: "Editing Mastery Medal",
+            desc: "Recognized for mastery in advanced editing techniques.",
+          },
+          {
+            img: "assets/img/random images/pexels-amar-13797094.jpg",
+            title: "Motion Graphics Star",
+            desc: "For outstanding motion graphics in commercial work.",
+          },
+          {
+            img: "assets/img/random images/pexels-ron-lach-8102674.jpg",
+            title: "Client Satisfaction Award",
+            desc: "Awarded for exceptional client feedback and results.",
+          },
+          {
+            img: "assets/img/random images/pexels-cottonbro-3296434.jpg",
+            title: "Innovation in Editing",
+            desc: "For innovative approaches in video editing.",
+          },
+        ];
+        function renderAwards() {
+          const grid = document.getElementById("awards-grid");
+          grid.innerHTML = "";
+          awardsData.forEach((a, idx) => {
+            const div = document.createElement("div");
+            div.style =
+              "display:flex;flex-direction:column;align-items:center;";
+            const img = document.createElement("img");
+            img.src = a.img;
+            img.alt = a.title;
+            img.addEventListener("click", function () {
+              showAwardModal(idx);
+            });
+            div.appendChild(img);
+            const title = document.createElement("div");
+            title.className = "award-title";
+            title.textContent = a.title;
+            div.appendChild(title);
+            grid.appendChild(div);
+          });
+        }
+        function showAwardModal(idx) {
+          const a = awardsData[idx];
+          const modal = document.getElementById("awardModal");
+          modal.innerHTML = `<div style="position:relative;width:90vw;max-width:400px;background:#23272f;padding:2.5rem 1.5rem 2rem 1.5rem;border-radius:1.5rem;box-shadow:0 8px 32px #fb923c22;text-align:center;">
+            <button id='closeAwardModal' style='position:absolute;top:10px;right:10px;background:#fb923c;border:none;color:#fff;font-size:1.5rem;border-radius:50%;width:36px;height:36px;cursor:pointer;z-index:2;'>&times;</button>
+            <img src="${a.img}" alt="${a.title}" style="width:120px;height:120px;object-fit:cover;border-radius:1rem;box-shadow:0 2px 12px #6366f1aa;" />
+            <div style="color:#fb923c;font-size:1.2rem;font-weight:700;margin-top:1.2rem;">${a.title}</div>
+            <div style="color:#fff;font-size:1rem;margin-top:0.7rem;">${a.desc}</div>
+          </div>`;
+          modal.style.display = "flex";
+          document.body.style.overflow = "hidden";
+          modal.onclick = function (e) {
+            if (e.target === modal || e.target.id === "closeAwardModal") {
+              modal.style.display = "none";
+              document.body.style.overflow = "";
+            }
+          };
+        }
+        document.addEventListener("DOMContentLoaded", renderAwards);
+      </script>
+    </section>
+    <!-- /Awards & Certifications Gallery Section -->
+
+    <!-- Animated Roadmap/Process Flow Section -->
+    <section
+      class="roadmap-section parallax-section"
+      style="
+        background: linear-gradient(135deg, #181818 80%, #23272f 100%);
+        padding: 70px 0 60px 0;
+      "
+    >
+      <div
+        class="container fade-in-up"
+        style="max-width: 1000px; margin: 0 auto"
+      >
+        <h2
+          style="
+            text-align: center;
+            font-size: 2.2rem;
+            font-family: 'Syne', sans-serif;
+            background: linear-gradient(90deg, #fb923c, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Our Creative Process
+        </h2>
+        <div
+          class="roadmap-progress-bar"
+          style="
+            position: relative;
+            height: 36px;
+            margin: 2.5rem 0 3rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <div
+            class="progress-bg"
+            style="
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 100%;
+              height: 8px;
+              background: #23272f;
+              border-radius: 4px;
+            "
+          ></div>
+          <div
+            id="progress-fill"
+            style="
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              height: 8px;
+              background: linear-gradient(90deg, #6366f1, #fb923c);
+              border-radius: 4px;
+              width: 0;
+            "
+          ></div>
+          <div
+            id="roadmap-dots"
+            style="
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              z-index: 2;
+            "
+          ></div>
+        </div>
+        <div class="roadmap-timeline" id="roadmap-timeline"></div>
+      </div>
+      <style>
+        .roadmap-timeline {
+          position: relative;
+          margin: 3rem 0 0 0;
+        }
+        .roadmap-step {
+          display: flex;
+          align-items: flex-start;
+          position: relative;
+          margin-bottom: 3.5rem;
+          z-index: 1;
+        }
+        .roadmap-step.left {
+          flex-direction: row;
+        }
+        .roadmap-step.right {
+          flex-direction: row-reverse;
+        }
+        .roadmap-icon {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background: #23272f;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2rem;
+          color: #fb923c;
+          box-shadow: 0 2px 12px #6366f1aa;
+          z-index: 2;
+          transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+          position: relative;
+          overflow: hidden;
+        }
+        .roadmap-icon:focus,
+        .roadmap-icon:hover {
+          box-shadow: 0 0 16px #fb923c, 0 0 32px #6366f1;
+          animation: bounceIcon 0.5s;
+          outline: none;
+        }
+        @keyframes bounceIcon {
+          0% {
+            transform: scale(1);
+          }
+          30% {
+            transform: scale(1.15);
+          }
+          60% {
+            transform: scale(0.95);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        .ripple {
+          position: absolute;
+          border-radius: 50%;
+          transform: scale(0);
+          animation: ripple 0.6s linear;
+          pointer-events: none;
+          background: rgba(251, 146, 60, 0.3);
+          z-index: 3;
+        }
+        @keyframes ripple {
+          to {
+            transform: scale(2.5);
+            opacity: 0;
+          }
+        }
+        .confetti {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 10;
+        }
+        .confetti-piece {
+          position: absolute;
+          width: 8px;
+          height: 16px;
+          border-radius: 2px;
+          opacity: 0.8;
+        }
+        .roadmap-step.active .roadmap-icon {
+          background: #fb923c;
+          color: #fff;
+        }
+        .roadmap-icon .checkmark {
+          display: none;
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          width: 24px;
+          height: 24px;
+        }
+        .roadmap-step.completed .roadmap-icon .checkmark {
+          display: block;
+          animation: popCheck 0.5s;
+        }
+        .roadmap-icon .tooltip {
+          display: none;
+          position: absolute;
+          bottom: 110%;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #23272f;
+          color: #fff;
+          padding: 0.5rem 1rem;
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px #6366f1aa;
+          font-size: 1rem;
+          white-space: nowrap;
+          z-index: 10;
+        }
+        .roadmap-icon:hover .tooltip {
+          display: block;
+        }
+        .roadmap-content {
+          background: #181818;
+          border-radius: 1.2rem;
+          box-shadow: 0 4px 24px #00ffcc22;
+          padding: 1.5rem 2rem;
+          min-width: 260px;
+          max-width: 420px;
+          position: relative;
+          transition: box-shadow 0.3s, background 0.3s;
+          cursor: pointer;
+        }
+        .roadmap-step.active .roadmap-content {
+          box-shadow: 0 8px 32px #fb923c88;
+          background: #23272f;
+        }
+        .roadmap-title {
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: #fb923c;
+          margin-bottom: 0.7rem;
+        }
+        .roadmap-desc {
+          color: #ccc;
+          font-size: 1rem;
+        }
+        .roadmap-expand {
+          display: none;
+          margin-top: 1.2rem;
+        }
+        .roadmap-step.active .roadmap-expand {
+          display: block;
+          animation: fadeIn 0.6s;
+        }
+        .roadmap-expand img,
+        .roadmap-expand video {
+          max-width: 100%;
+          border-radius: 0.7rem;
+          margin-bottom: 0.7rem;
+        }
+        .roadmap-progress {
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          width: 6px;
+          background: linear-gradient(180deg, #6366f1, #fb923c);
+          transform: translateX(-50%);
+          z-index: 0;
+          border-radius: 3px;
+        }
+        .roadmap-dot {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: #23272f;
+          border: 3px solid #6366f1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: border 0.3s, background 0.3s;
+          position: relative;
+          z-index: 2;
+        }
+        .roadmap-dot.active {
+          background: #fb923c;
+          border-color: #fb923c;
+          color: #fff;
+        }
+        .roadmap-dot.completed {
+          background: #6366f1;
+          border-color: #6366f1;
+          color: #fff;
+        }
+        .roadmap-dot .dot-label {
+          font-size: 1.1rem;
+          font-weight: 700;
+        }
+        .roadmap-dot .dot-tooltip {
+          display: none;
+          position: absolute;
+          top: -38px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #23272f;
+          color: #fff;
+          padding: 0.4rem 1rem;
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px #6366f1aa;
+          font-size: 0.95rem;
+          white-space: nowrap;
+          z-index: 10;
+        }
+        .roadmap-dot:hover .dot-tooltip {
+          display: block;
+        }
+        @media (max-width: 900px) {
+          .roadmap-step.left,
+          .roadmap-step.right {
+            flex-direction: column;
+            align-items: center;
+          }
+          .roadmap-content {
+            max-width: 100%;
+          }
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: none;
+          }
+        }
+        @keyframes popCheck {
+          0% {
+            transform: scale(0);
+          }
+          80% {
+            transform: scale(1.2);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+      </style>
+      <script>
+        const roadmapData = [
+          {
+            icon: '<i class="fas fa-lightbulb"></i>',
+            title: "Discovery",
+            desc: "We start by understanding your vision, goals, and audience.",
+            expand: {
+              img: "assets/img/portfolio/branding-1.jpg",
+              detail:
+                "In-depth consultations and brainstorming sessions to uncover your unique story.",
+            },
+          },
+          {
+            icon: '<i class="fas fa-pencil-ruler"></i>',
+            title: "Planning",
+            desc: "We craft a creative strategy and storyboard for your project.",
+            expand: {
+              img: "assets/img/portfolio/branding-2.jpg",
+              detail:
+                "Detailed storyboards, shot lists, and timelines ensure a smooth process.",
+            },
+          },
+          {
+            icon: '<i class="fas fa-video"></i>',
+            title: "Production",
+            desc: "Our team brings your vision to life with expert filming and editing.",
+            expand: {
+              video: "assets/video/reel.mp4",
+              detail:
+                "High-quality filming, editing, and motion graphics tailored to your brand.",
+            },
+          },
+          {
+            icon: '<i class="fas fa-magic"></i>',
+            title: "Polish",
+            desc: "We refine, color grade, and add final touches for a cinematic result.",
+            expand: {
+              img: "assets/img/portfolio/branding-3.jpg",
+              detail:
+                "Color grading, sound design, and VFX for a professional finish.",
+            },
+          },
+          {
+            icon: '<i class="fas fa-rocket"></i>',
+            title: "Delivery",
+            desc: "Your project is delivered on time, ready to wow your audience.",
+            expand: {
+              img: "assets/img/services.jpg",
+              detail: "Multiple formats, fast delivery, and ongoing support.",
+            },
+          },
+        ];
+        let currentStep = 0;
+        function renderRoadmap() {
+          const timeline = document.getElementById("roadmap-timeline");
+          timeline.innerHTML = '<div class="roadmap-progress"></div>';
+          roadmapData.forEach((step, idx) => {
+            const div = document.createElement("div");
+            div.className =
+              "roadmap-step " + (idx % 2 === 0 ? "left" : "right");
+            div.setAttribute("tabindex", 0);
+            div.innerHTML = `
+              <div class="roadmap-icon" tabindex="0">
+                ${step.icon}
+                <span class="tooltip">${step.title}</span>
+                <svg class="checkmark" viewBox="0 0 24 24"><polyline points="20 6 11 17 4 10" style="fill:none;stroke:#00ffcc;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;"/></svg>
+              </div>
+              <div class="roadmap-content">
+                <div class="roadmap-title">${step.title}</div>
+                <div class="roadmap-desc">${step.desc}</div>
+                <div class="roadmap-expand">
+                  ${
+                    step.expand.img
+                      ? `<img src="${step.expand.img}" alt="${step.title}" />`
+                      : ""
+                  }
+                  ${
+                    step.expand.video
+                      ? `<video src="${step.expand.video}" controls style="width:100%;border-radius:0.7rem;"></video>`
+                      : ""
+                  }
+                  ${
+                    step.expand.youtube
+                      ? `<iframe width='100%' height='240' src='${step.expand.youtube}' frameborder='0' allowfullscreen style='border-radius:0.7rem;'></iframe>`
+                      : ""
+                  }
+                  <div style="color:#00ffcc;font-size:1rem;margin-top:0.5rem;">${
+                    step.expand.detail
+                  }</div>
+                </div>
+              </div>
+            `;
+            // Ripple effect on icon click
+            div
+              .querySelector(".roadmap-icon")
+              .addEventListener("mousedown", function (e) {
+                const rect = this.getBoundingClientRect();
+                createRipple(this, e.clientX - rect.left, e.clientY - rect.top);
+              });
+            // Keyboard navigation for icon
+            div
+              .querySelector(".roadmap-icon")
+              .addEventListener("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ")
+                  div.querySelector(".roadmap-content").click();
+              });
+            // Keyboard navigation for step
+            div.addEventListener("keydown", function (e) {
+              if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+                if (div.nextElementSibling) div.nextElementSibling.focus();
+              } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+                if (div.previousElementSibling)
+                  div.previousElementSibling.focus();
+              } else if (e.key === "Enter" || e.key === " ") {
+                div.querySelector(".roadmap-content").click();
+              }
+            });
+            // Swipe navigation for mobile
+            let touchStartX = 0;
+            div.addEventListener("touchstart", (e) => {
+              touchStartX = e.touches[0].clientX;
+            });
+            div.addEventListener("touchend", (e) => {
+              const dx = e.changedTouches[0].clientX - touchStartX;
+              if (dx > 50 && div.previousElementSibling)
+                div.previousElementSibling
+                  .querySelector(".roadmap-content")
+                  .click();
+              if (dx < -50 && div.nextElementSibling)
+                div.nextElementSibling
+                  .querySelector(".roadmap-content")
+                  .click();
+            });
+            div.querySelector(".roadmap-content").onclick = function (e) {
+              document
+                .querySelectorAll(".roadmap-step.active")
+                .forEach((el) => el.classList.remove("active"));
+              document
+                .querySelectorAll(".roadmap-step.completed")
+                .forEach((el) => el.classList.remove("completed"));
+              div.classList.add("active", "completed");
+              for (let i = 0; i < idx; i++)
+                document
+                  .querySelectorAll(".roadmap-step")
+                  [i].classList.add("completed");
+              currentStep = idx;
+              updateProgressBar();
+              updateDots();
+              launchConfetti(div.querySelector(".roadmap-icon"));
+            };
+            timeline.appendChild(div);
+          });
+        }
+        function renderRoadmapDots() {
+          const dots = document.getElementById("roadmap-dots");
+          dots.innerHTML = "";
+          roadmapData.forEach((step, idx) => {
+            const dot = document.createElement("div");
+            dot.className = "roadmap-dot";
+            dot.innerHTML = `<span class="dot-label">${
+              idx + 1
+            }</span><span class="dot-tooltip">${step.title}</span>`;
+            dot.setAttribute("tabindex", 0);
+            dot.onclick = function () {
+              document
+                .querySelectorAll(".roadmap-step")
+                [idx].scrollIntoView({ behavior: "smooth", block: "center" });
+              document
+                .querySelectorAll(".roadmap-step")
+                [idx].querySelector(".roadmap-content")
+                .click();
+              dot.focus();
+            };
+            dot.addEventListener("keydown", function (e) {
+              if (e.key === "Enter" || e.key === " ") dot.click();
+              if (e.key === "ArrowRight" && dot.nextElementSibling)
+                dot.nextElementSibling.focus();
+              if (e.key === "ArrowLeft" && dot.previousElementSibling)
+                dot.previousElementSibling.focus();
+            });
+            dots.appendChild(dot);
+          });
+        }
+        function updateProgressBar() {
+          const fill = document.getElementById("progress-fill");
+          const percent = currentStep / (roadmapData.length - 1);
+          fill.style.width = percent * 100 + "%";
+        }
+        function updateDots() {
+          const dots = document.querySelectorAll(".roadmap-dot");
+          dots.forEach((dot, idx) => {
+            dot.classList.remove("active", "completed");
+            if (idx < currentStep) dot.classList.add("completed");
+            if (idx === currentStep) dot.classList.add("active");
+          });
+        }
+        function handleScrollHighlight() {
+          const steps = document.querySelectorAll(".roadmap-step");
+          let found = false;
+          steps.forEach((step, idx) => {
+            const rect = step.getBoundingClientRect();
+            if (
+              !found &&
+              rect.top < window.innerHeight / 2 &&
+              rect.bottom > window.innerHeight / 4
+            ) {
+              currentStep = idx;
+              found = true;
+            }
+          });
+          updateProgressBar();
+          updateDots();
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+          renderRoadmap();
+          renderRoadmapDots();
+          document
+            .querySelectorAll(".roadmap-step")[0]
+            .classList.add("active", "completed");
+          updateProgressBar();
+          updateDots();
+          window.addEventListener("scroll", handleScrollHighlight);
+        });
+      </script>
+    </section>
+    <!-- /Animated Roadmap/Process Flow Section -->
+
+    <!-- Parallax & Scroll Animations -->
+    <script>
+      // Scroll/fade-in animations
+      function handleScrollAnimations() {
+        const fadeEls = document.querySelectorAll(".fade-in, .fade-in-up");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        fadeEls.forEach((el) => observer.observe(el));
+      }
+      // Parallax effect
+      function handleParallax() {
+        const parallaxSections = document.querySelectorAll(".parallax-section");
+        window.addEventListener("scroll", () => {
+          parallaxSections.forEach((section) => {
+            const speed = parseFloat(section.dataset.parallax || "0.2");
+            const offset = window.scrollY * speed;
+            section.style.backgroundPosition = `center ${offset}px`;
+          });
+        });
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        handleScrollAnimations();
+        handleParallax();
+      });
+    </script>
+    <!-- /Parallax & Scroll Animations -->
+    <footer
+      class="footer-section"
+      style="
+        background: #181818;
+        color: #fff;
+        padding: 2.5rem 0 1.2rem 0;
+        margin-top: 3rem;
+      "
+    >
+      <div
+        class="container"
+        style="
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          gap: 2rem;
+        "
+      >
+        <div style="display: flex; align-items: center; gap: 0.7rem">
+          <img
+            src="assets/img/my-profile-img.png"
+            alt="ClipCraft Logo"
+            style="
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              object-fit: cover;
+            "
+          />
+          <span style="font-size: 1.2rem; font-weight: 700">ClipCraft</span>
+        </div>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap">
+          <a href="index.html" style="color: #fff; text-decoration: none"
+            >Home</a
+          >
+          <a href="about.html" style="color: #fff; text-decoration: none"
+            >About</a
+          >
+          <a
+            href="service-detail.html"
+            style="color: #fff; text-decoration: none"
+            >Services</a
+          >
+          <a href="project.html" style="color: #fff; text-decoration: none"
+            >Projects</a
+          >
+          <a href="contact.html" style="color: #fff; text-decoration: none"
+            >Contact</a
+          >
+        </div>
+        <div style="display: flex; gap: 1.2rem">
+          <a href="#" style="color: #6366f1; font-size: 1.4rem"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" style="color: #fb923c; font-size: 1.4rem"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" style="color: #00ffcc; font-size: 1.4rem"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+        </div>
+      </div>
+      <div
+        style="
+          text-align: center;
+          color: #aaa;
+          font-size: 0.95rem;
+          margin-top: 1.5rem;
+        "
+      >
+        &copy; 2024 ClipCraft. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>
