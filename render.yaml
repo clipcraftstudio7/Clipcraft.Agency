@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: clipcraft-agency
+    env: static
+    buildCommand: null
+    staticPublishPath: ./iPortfolio
