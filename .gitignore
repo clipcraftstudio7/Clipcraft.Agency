@@ -5,9 +5,20 @@
 *.mkv
 *.wmv
 *.flv
+*.webm
+*.m4v
 
-# Specific large files
-iPortfolio/assets/img/long form/*.mp4
+# Large image files
+*.psd
+*.ai
+*.eps
+*.tiff
+*.tif
+
+# Specific directories with large files
+iPortfolio/assets/img/long form/
+iPortfolio/assets/video/
+iPortfolio/assets/video/shortformvideo/
 
 # OS generated files
 .DS_Store
@@ -28,3 +39,13 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Log files
+*.log
+
+# Node modules (if any)
+node_modules/
+
+# Build directories
+dist/
+build/
