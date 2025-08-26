@@ -54,6 +54,33 @@
   --card-color: #1e1e1e;
 }
 
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Optimize animations for performance */
+.project-card,
+.showreel-video-container,
+.service-box {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize iframe loading */
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reduce layout shifts */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Presets */
 .light-background {
   --background-color: #f4fafd;
@@ -1584,6 +1611,39 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+}
+
+/* Add extra spacing for shortform videos */
+.grid.category.shortform {
+  gap: 30px;
+  justify-items: center;
+}
+
+.shortform-item {
+  margin: 10px;
+}
+
+/* Performance optimizations for animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize modal performance */
+.modal {
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+.modal-content {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .project-card {

@@ -28,17 +28,33 @@
     <link
       href="assets/vendor/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
     <link
       href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link 
+      href="assets/vendor/aos/aos.css" 
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
     <link
       href="assets/vendor/glightbox/css/glightbox.min.css"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link 
+      href="assets/vendor/swiper/swiper-bundle.min.css" 
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
@@ -2002,13 +2018,14 @@
       <!-- About Section -->
       <section id="my-work" class="my-work section">
         <!-- Section Title -->
-        <h2 class="showreel-heading">SHOWREEL</h2>
+        <h2 class="showreel-heading">OUR WORK</h2>
         <div class="showreel-video-container">
           <iframe 
             src="https://www.youtube.com/embed/bsqDSFfars8?autoplay=1&loop=1&mute=1&playlist=bsqDSFfars8&controls=0&showinfo=0&rel=0"
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
+            allowfullscreen
+            loading="lazy">
           </iframe>
         </div>
 
@@ -2569,13 +2586,34 @@
               const modalMedia = document.getElementById("modalMedia");
               modal.classList.remove("hidden");
 
-              const clone = mediaElement.cloneNode(true);
-              clone.controls = true;
-              clone.autoplay = true;
-              clone.loop = true;
-
-              modalMedia.innerHTML = "";
-              modalMedia.appendChild(clone);
+              // Handle different media types
+              if (mediaElement.tagName === 'IFRAME') {
+                // For iframe elements, create a larger version with controls
+                const iframeSrc = mediaElement.src;
+                const videoId = iframeSrc.match(/embed\/([^?]+)/)?.[1];
+                if (videoId) {
+                  const newIframe = document.createElement('iframe');
+                  newIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0`;
+                  newIframe.style.width = '100%';
+                  newIframe.style.height = '400px';
+                  newIframe.style.borderRadius = '12px';
+                  newIframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                  newIframe.allowfullscreen = true;
+                  
+                  modalMedia.innerHTML = "";
+                  modalMedia.appendChild(newIframe);
+                }
+              } else {
+                // For video and image elements
+                const clone = mediaElement.cloneNode(true);
+                if (clone.tagName === 'VIDEO') {
+                  clone.controls = true;
+                  clone.autoplay = true;
+                  clone.loop = true;
+                }
+                modalMedia.innerHTML = "";
+                modalMedia.appendChild(clone);
+              }
             }
 
             function closeModal() {
@@ -2584,8 +2622,8 @@
               document.getElementById("modalMedia").innerHTML = "";
             }
 
-            // Attach click events to all video/image elements
-            document.querySelectorAll("video, img").forEach((media) => {
+            // Attach click events to all video/image/iframe elements
+            document.querySelectorAll("video, img, iframe").forEach((media) => {
               media.style.cursor = "pointer";
               media.addEventListener("click", () => openModal(media));
             });
@@ -5646,6 +5684,80 @@
         };
       });
       // ... existing code ...
+    </script>
+    
+    <!-- Performance Optimizations -->
+    <script>
+      // Lazy load iframes
+      document.addEventListener('DOMContentLoaded', function() {
+        const iframes = document.querySelectorAll('iframe[loading="lazy"]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const iframe = entry.target;
+              iframe.src = iframe.dataset.src || iframe.src;
+              observer.unobserve(iframe);
+            }
+          });
+        });
+        
+        iframes.forEach(iframe => {
+          imageObserver.observe(iframe);
+        });
+      });
+
+      // Preload critical resources
+      const preloadLinks = [
+        'assets/vendor/bootstrap/css/bootstrap.min.css',
+        'assets/css/main.css'
+      ];
+      
+      preloadLinks.forEach(href => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.href = href;
+        link.as = 'style';
+        document.head.appendChild(link);
+      });
+
+      // Optimize YouTube embeds
+      function optimizeYouTubeEmbeds() {
+        const iframes = document.querySelectorAll('iframe[src*="youtube.com"]');
+        iframes.forEach(iframe => {
+          // Add loading="lazy" if not already present
+          if (!iframe.hasAttribute('loading')) {
+            iframe.setAttribute('loading', 'lazy');
+          }
+          
+          // Add title for accessibility
+          if (!iframe.hasAttribute('title')) {
+            iframe.setAttribute('title', 'YouTube video player');
+          }
+          
+          // Add performance optimizations
+          iframe.setAttribute('loading', 'lazy');
+        });
+      }
+
+      // Run optimizations when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', optimizeYouTubeEmbeds);
+      } else {
+        optimizeYouTubeEmbeds();
+      }
+
+      // Service Worker for caching (if supported)
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
     </script>
   </body>
 </html>
