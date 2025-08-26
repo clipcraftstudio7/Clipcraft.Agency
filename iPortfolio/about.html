@@ -1080,12 +1080,13 @@
         >
           &times;
         </button>
-        <video
-          src="assets/video/reel.mp4"
-          controls
-          autoplay
-          style="width: 100%; border-radius: 1rem"
-        ></video>
+        <iframe 
+          src="https://www.youtube.com/embed/bsqDSFfars8?autoplay=1&controls=1&rel=0"
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+          style="width: 100%; border-radius: 1rem">
+        </iframe>
       </div>
     </div>
     <script>
@@ -1690,7 +1691,7 @@
               </div>
               <div style="color:#00ffcc;font-size:1rem;margin-top:0.5rem;text-align:center;">${t.funfact}</div>
               <div style="margin-top:1.5rem;text-align:center;">
-                <video src="assets/video/reel.mp4" controls style="width:100%;border-radius:1rem;"></video>
+                <iframe src="https://www.youtube.com/embed/bsqDSFfars8?autoplay=1&controls=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;border-radius:1rem;"></iframe>
               </div>
             </div>`;
             document.body.appendChild(modal);
@@ -1708,7 +1709,7 @@
               </div>
               <div style=\"color:#00ffcc;font-size:1rem;margin-top:0.5rem;text-align:center;\">${t.funfact}</div>
               <div style=\"margin-top:1.5rem;text-align:center;\">
-                <video src=\"assets/video/reel.mp4\" controls style=\"width:100%;border-radius:1rem;\"></video>
+                <iframe src=\"https://www.youtube.com/embed/bsqDSFfars8?autoplay=1&controls=1&rel=0\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen style=\"width:100%;border-radius:1rem;\"></iframe>
               </div>
             </div>`;
             modal.style.display = "flex";
@@ -2082,7 +2083,7 @@
             title: "First Viral Project",
             desc: "Our edits helped a client go viral, earning millions of views and launching our reputation for impact.",
             expand: {
-              video: "assets/video/reel.mp4",
+              video: "https://www.youtube.com/embed/bsqDSFfars8?autoplay=1&controls=1&rel=0",
               testimonial:
                 "“Our video went viral thanks to ClipCraft!” – Client C",
             },
@@ -2131,7 +2132,7 @@
                   }
                   ${
                     item.expand.video
-                      ? `<video src="${item.expand.video}" controls style="width:100%;border-radius:0.7rem;"></video>`
+                      ? `<iframe src="${item.expand.video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;border-radius:0.7rem;"></iframe>`
                       : ""
                   }
                   ${
@@ -2684,7 +2685,7 @@
             title: "Production",
             desc: "Our team brings your vision to life with expert filming and editing.",
             expand: {
-              video: "assets/video/reel.mp4",
+              video: "https://www.youtube.com/embed/bsqDSFfars8?autoplay=1&controls=1&rel=0",
               detail:
                 "High-quality filming, editing, and motion graphics tailored to your brand.",
             },
@@ -2735,7 +2736,7 @@
                   }
                   ${
                     step.expand.video
-                      ? `<video src="${step.expand.video}" controls style="width:100%;border-radius:0.7rem;"></video>`
+                      ? `<iframe src="${step.expand.video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;border-radius:0.7rem;"></iframe>`
                       : ""
                   }
                   ${

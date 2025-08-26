@@ -264,8 +264,8 @@
     document.getElementById("modalMedia").innerHTML = "";
   }
 
-  // Attach click events to all video/image elements
-  document.querySelectorAll("video, img").forEach((media) => {
+  // Attach click events to all video/image/iframe elements
+  document.querySelectorAll("video, img, iframe").forEach((media) => {
     media.style.cursor = "pointer";
     media.addEventListener("click", () => openModal(media));
   });
