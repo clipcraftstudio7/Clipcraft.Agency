@@ -243,16 +243,26 @@
   window.addEventListener("load", navmenuScrollspy);
   document.addEventListener("scroll", navmenuScrollspy);
 
-  // Functions for My Work section
+  // Functions for Our Work section
   function openModal(mediaElement) {
     const modal = document.getElementById("previewModal");
     const modalMedia = document.getElementById("modalMedia");
     modal.classList.remove("hidden");
 
     const clone = mediaElement.cloneNode(true);
-    clone.controls = true;
-    clone.autoplay = true;
-    clone.loop = true;
+    
+    // Handle different media types
+    if (mediaElement.tagName === 'IFRAME') {
+      // For iframe elements, update the src to show controls
+      const originalSrc = mediaElement.src;
+      const newSrc = originalSrc.replace('controls=0', 'controls=1').replace('autoplay=1', 'autoplay=0');
+      clone.src = newSrc;
+    } else if (mediaElement.tagName === 'VIDEO') {
+      // For video elements
+      clone.controls = true;
+      clone.autoplay = true;
+      clone.loop = true;
+    }
 
     modalMedia.innerHTML = "";
     modalMedia.appendChild(clone);

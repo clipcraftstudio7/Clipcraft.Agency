@@ -54,33 +54,6 @@
   --card-color: #1e1e1e;
 }
 
-/* Performance optimizations */
-* {
-  box-sizing: border-box;
-}
-
-/* Optimize animations for performance */
-.project-card,
-.showreel-video-container,
-.service-box {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Optimize iframe loading */
-iframe {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Reduce layout shifts */
-img, video, iframe {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
 /* Presets */
 .light-background {
   --background-color: #f4fafd;
@@ -528,13 +501,13 @@ h6 {
 /*--------------------------------------------------------------
 # My Work Section
 --------------------------------------------------------------*/
-.my-work.section {
+.our-work.section {
   position: relative;
   padding: 0px 0 60px 0;
   margin-top: 10px; /* Reverted to original value */
 }
 
-.my-work .showreel-heading {
+.our-work .showreel-heading {
   position: relative;
   font-size: clamp(57px, 12vw, 150px);
   letter-spacing: -0.05em;
@@ -551,7 +524,7 @@ h6 {
   font-weight: bold;
 }
 
-.my-work .showreel-video-container {
+.our-work .showreel-video-container {
   position: relative;
   width: 100%;
   max-width: 600px; /* Reverted to original max-width */
@@ -563,8 +536,8 @@ h6 {
   margin-top: 0;
 }
 
-.my-work .showreel-video-container video,
-.my-work .showreel-video-container iframe {
+.our-work .showreel-video-container video,
+.our-work .showreel-video-container iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -574,34 +547,34 @@ h6 {
   border-radius: 20px;
 }
 
-.my-work .content h2 {
+.our-work .content h2 {
   font-weight: 700;
   font-size: 24px;
 }
 
-.my-work .content ul {
+.our-work .content ul {
   list-style: none;
   padding: 0;
 }
 
-.my-work .content ul li {
+.our-work .content ul li {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
 }
 
-.my-work .content ul strong {
+.our-work .content ul strong {
   margin-right: 10px;
 }
 
-.my-work .content ul i {
+.our-work .content ul i {
   font-size: 16px;
   margin-right: 5px;
   color: var(--color-accent);
   line-height: 0;
 }
 
-.my-work .section-title h2 {
+.our-work .section-title h2 {
   font-family: var(--heading-font);
   background-image: linear-gradient(to right, #ff007f, #00d4ff);
   -webkit-background-clip: text;
@@ -1508,10 +1481,17 @@ main {
 }
 
 .modal-content video,
-.modal-content img {
+.modal-content img,
+.modal-content iframe {
   width: 100%;
   height: auto;
   border-radius: 10px;
+  max-height: 70vh;
+}
+
+.modal-content iframe {
+  aspect-ratio: 16/9;
+  min-height: 300px;
 }
 
 .close-btn {
@@ -1610,40 +1590,17 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  gap: 30px;
 }
 
 /* Add extra spacing for shortform videos */
 .grid.category.shortform {
-  gap: 30px;
+  gap: 40px;
   justify-items: center;
 }
 
 .shortform-item {
-  margin: 10px;
-}
-
-/* Performance optimizations for animations */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Optimize modal performance */
-.modal {
-  will-change: opacity;
-  transform: translateZ(0);
-}
-
-.modal-content {
-  will-change: transform;
-  transform: translateZ(0);
+  margin-bottom: 20px;
 }
 
 .project-card {
@@ -1724,7 +1681,7 @@ iframe {
 }
 
 @media (max-width: 768px) {
-  .my-work .showreel-video-container {
+  .our-work .showreel-video-container {
     height: auto; /* Remove fixed height */
     aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
   }
@@ -1734,4 +1691,35 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Optimize animations for better performance */
+.project-card,
+.phone-frame,
+.modal-content {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Reduce repaints for smooth scrolling */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize iframe loading */
+iframe {
+  contain: layout style paint;
+}
+
+/* Improve modal performance */
+.modal {
+  will-change: opacity;
+  backface-visibility: hidden;
 }

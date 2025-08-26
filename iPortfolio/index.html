@@ -9,8 +9,19 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Clipraft.Agency</title>
-    <meta content="" name="description" />
-    <meta content="" name="keywords" />
+    <meta content="Professional video editing and creative services. Transform your vision into compelling visual stories with our expert team." name="description" />
+    <meta content="video editing, motion graphics, creative services, portfolio, showreel" name="keywords" />
+    
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.youtube.com" />
+    <link rel="dns-prefetch" href="https://www.youtube.com" />
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="assets/css/main.css" as="style" />
+    <link rel="preload" href="assets/vendor/bootstrap/css/bootstrap.min.css" as="style" />
 
     <!-- Favicons -->
     <link href="assets/img/my-profile-img.png" rel="icon" />
@@ -57,10 +68,39 @@
     />
 
     <!-- Main CSS File -->
-    <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/main.css" rel="stylesheet" media="print" onload="this.media='all'" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Performance Optimization Script -->
+    <script>
+      // Lazy load iframes that don't have loading="lazy"
+      document.addEventListener('DOMContentLoaded', function() {
+        const iframes = document.querySelectorAll('iframe:not([loading="lazy"])');
+        iframes.forEach(iframe => {
+          iframe.setAttribute('loading', 'lazy');
+        });
+        
+        // Intersection Observer for better performance
+        if ('IntersectionObserver' in window) {
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+              }
+            });
+          });
+          
+          document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+          });
+        }
+      });
+    </script>
     <script>
       tailwind.config = {
         theme: {
@@ -1868,7 +1908,7 @@
             >
           </li>
           <li>
-            <a href="#my-work"><i class="bi bi-person navicon"></i> My Work</a>
+            <a href="#our-work"><i class="bi bi-person navicon"></i> Our Work</a>
           </li>
           <li>
             <a href="#resume"
@@ -2016,16 +2056,16 @@
       <!-- /Hero Section -->
 
       <!-- About Section -->
-      <section id="my-work" class="my-work section">
+      <section id="our-work" class="our-work section">
         <!-- Section Title -->
-        <h2 class="showreel-heading">OUR WORK</h2>
+        <h2 class="showreel-heading">SHOWREEL</h2>
         <div class="showreel-video-container">
           <iframe 
             src="https://www.youtube.com/embed/bsqDSFfars8?autoplay=1&loop=1&mute=1&playlist=bsqDSFfars8&controls=0&showinfo=0&rel=0"
             frameborder="0" 
+            loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            loading="lazy">
+            allowfullscreen>
           </iframe>
         </div>
 
@@ -2118,7 +2158,7 @@
         </section>
 
         <div class="container section-title" data-aos="fade-up">
-          <h2>My Work</h2>
+          <h2>Our Work</h2>
           <style>
             .modal {
               position: fixed;
@@ -2304,6 +2344,7 @@
               <iframe 
                 src="https://www.youtube.com/embed/e08RbAQKi6c?autoplay=1&loop=1&mute=1&playlist=e08RbAQKi6c&controls=0&showinfo=0&rel=0"
                 frameborder="0" 
+                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
               </iframe>
@@ -2312,6 +2353,7 @@
               <iframe 
                 src="https://www.youtube.com/embed/pE6OUEf0jto?autoplay=1&loop=1&mute=1&playlist=pE6OUEf0jto&controls=0&showinfo=0&rel=0"
                 frameborder="0" 
+                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
               </iframe>
@@ -2323,6 +2365,7 @@
               <iframe 
                 src="https://www.youtube.com/embed/bsqDSFfars8?autoplay=1&loop=1&mute=1&playlist=bsqDSFfars8&controls=0&showinfo=0&rel=0"
                 frameborder="0" 
+                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
               </iframe>
@@ -2586,34 +2629,13 @@
               const modalMedia = document.getElementById("modalMedia");
               modal.classList.remove("hidden");
 
-              // Handle different media types
-              if (mediaElement.tagName === 'IFRAME') {
-                // For iframe elements, create a larger version with controls
-                const iframeSrc = mediaElement.src;
-                const videoId = iframeSrc.match(/embed\/([^?]+)/)?.[1];
-                if (videoId) {
-                  const newIframe = document.createElement('iframe');
-                  newIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&rel=0`;
-                  newIframe.style.width = '100%';
-                  newIframe.style.height = '400px';
-                  newIframe.style.borderRadius = '12px';
-                  newIframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-                  newIframe.allowfullscreen = true;
-                  
-                  modalMedia.innerHTML = "";
-                  modalMedia.appendChild(newIframe);
-                }
-              } else {
-                // For video and image elements
-                const clone = mediaElement.cloneNode(true);
-                if (clone.tagName === 'VIDEO') {
-                  clone.controls = true;
-                  clone.autoplay = true;
-                  clone.loop = true;
-                }
-                modalMedia.innerHTML = "";
-                modalMedia.appendChild(clone);
-              }
+              const clone = mediaElement.cloneNode(true);
+              clone.controls = true;
+              clone.autoplay = true;
+              clone.loop = true;
+
+              modalMedia.innerHTML = "";
+              modalMedia.appendChild(clone);
             }
 
             function closeModal() {
@@ -2622,8 +2644,8 @@
               document.getElementById("modalMedia").innerHTML = "";
             }
 
-            // Attach click events to all video/image/iframe elements
-            document.querySelectorAll("video, img, iframe").forEach((media) => {
+            // Attach click events to all video/image elements
+            document.querySelectorAll("video, img").forEach((media) => {
               media.style.cursor = "pointer";
               media.addEventListener("click", () => openModal(media));
             });
@@ -5684,80 +5706,6 @@
         };
       });
       // ... existing code ...
-    </script>
-    
-    <!-- Performance Optimizations -->
-    <script>
-      // Lazy load iframes
-      document.addEventListener('DOMContentLoaded', function() {
-        const iframes = document.querySelectorAll('iframe[loading="lazy"]');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const iframe = entry.target;
-              iframe.src = iframe.dataset.src || iframe.src;
-              observer.unobserve(iframe);
-            }
-          });
-        });
-        
-        iframes.forEach(iframe => {
-          imageObserver.observe(iframe);
-        });
-      });
-
-      // Preload critical resources
-      const preloadLinks = [
-        'assets/vendor/bootstrap/css/bootstrap.min.css',
-        'assets/css/main.css'
-      ];
-      
-      preloadLinks.forEach(href => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = href;
-        link.as = 'style';
-        document.head.appendChild(link);
-      });
-
-      // Optimize YouTube embeds
-      function optimizeYouTubeEmbeds() {
-        const iframes = document.querySelectorAll('iframe[src*="youtube.com"]');
-        iframes.forEach(iframe => {
-          // Add loading="lazy" if not already present
-          if (!iframe.hasAttribute('loading')) {
-            iframe.setAttribute('loading', 'lazy');
-          }
-          
-          // Add title for accessibility
-          if (!iframe.hasAttribute('title')) {
-            iframe.setAttribute('title', 'YouTube video player');
-          }
-          
-          // Add performance optimizations
-          iframe.setAttribute('loading', 'lazy');
-        });
-      }
-
-      // Run optimizations when DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', optimizeYouTubeEmbeds);
-      } else {
-        optimizeYouTubeEmbeds();
-      }
-
-      // Service Worker for caching (if supported)
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-              console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-              console.log('SW registration failed: ', registrationError);
-            });
-        });
-      }
     </script>
   </body>
 </html>
