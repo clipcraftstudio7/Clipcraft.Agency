@@ -917,6 +917,7 @@ img {
 
 /* Bold styling for "our work" text */
 .our-work-bold {
-  font-weight: 700;
-  font-size: 1.1em;
+  font-weight: 900;
+  font-size: 1.2em;
+  text-shadow: 0 0 10px rgba(255, 77, 77, 0.3);
 }
