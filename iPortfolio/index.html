@@ -5791,7 +5791,8 @@
         const grid = document.querySelector(".category." + section);
         const items = grid.querySelectorAll("." + itemClass);
         const extra = grid.querySelectorAll("." + extraClass);
-        const loadMoreBtn = grid.querySelector("#" + btnId);
+        const loadMoreBtn = document.getElementById(btnId);
+        const initialVisible = section === "thumbnail" ? 6 : 2;
         function updateVisibility() {
           // Only show for active tab
           if (grid.classList.contains("hidden")) {
@@ -5800,7 +5801,7 @@
           }
           if (window.innerWidth <= 768) {
             items.forEach((el, i) => {
-              if (i < 2) el.style.display = "";
+              if (i < initialVisible) el.style.display = "";
               else el.style.display = "none";
             });
             if (extra.length > 0) loadMoreBtn.style.display = "block";
