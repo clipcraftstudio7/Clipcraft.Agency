@@ -1213,17 +1213,42 @@
         width: 280px !important;
         height: 560px !important;
       }
+      /* Gaming mirrors Shortform sizing */
+      .grid.category.gaming .phone-frame {
+        margin: 0 !important;
+        width: 280px !important;
+        height: 560px !important;
+      }
       @media (max-width: 768px) {
         .grid.category.shortform .phone-frame {
           width: 100% !important;
+          max-width: 180px !important;
+          height: auto !important;
+          aspect-ratio: 9/16;
+        }
+        .grid.category.gaming .phone-frame {
+          width: 100% !important;
+          max-width: 180px !important;
           height: auto !important;
           aspect-ratio: 9/16;
         }
       }
 
+      /* Smaller grids on narrow screens for thumbnails and graphics */
+      @media (max-width: 600px) {
+        .grid.category.thumbnails {
+          grid-template-columns: repeat(2, minmax(140px, 1fr));
+          gap: 10px !important;
+        }
+        .grid.category.graphic {
+          grid-template-columns: repeat(2, minmax(150px, 1fr));
+          gap: 10px !important;
+        }
+      }
+
       .grid.category.thumbnails {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 10px !important;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        gap: 16px !important;
       }
       .grid.category.thumbnails .project-card {
         background: none !important;
@@ -1249,7 +1274,40 @@
         object-fit: cover;
         border-radius: 10px;
         display: block;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        background: #000;
+      }
+
+      /* Graphic grid - similar sizing to thumbnails but slightly larger */
+      .grid.category.graphic {
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 18px !important;
+      }
+      .grid.category.graphic .project-card {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.2s;
+      }
+      .grid.category.graphic .project-card:hover {
+        transform: scale(1.04);
+        z-index: 2;
+      }
+      .grid.category.graphic .thumbnail {
+        aspect-ratio: 16/9;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         background: #000;
       }
 
@@ -2331,11 +2389,13 @@
 
           <!-- Tabs: Shortform first -->
           <div class="tabs">
-            <button onclick="showCategory('shortform')" class="active">
+            <button onclick="showCategory('shortform')" data-category="shortform" class="active">
               Shortform
             </button>
-            <button onclick="showCategory('longform')">Longform</button>
-            <button onclick="showCategory('thumbnails')">Thumbnails</button>
+            <button onclick="showCategory('longform')" data-category="longform">Longform</button>
+            <button onclick="showCategory('thumbnails')" data-category="thumbnails">Thumbnails</button>
+            <button onclick="showCategory('graphic')" data-category="graphic">Graphic Design</button>
+            <button onclick="showCategory('gaming')" data-category="gaming">Gaming</button>
           </div>
 
           <!-- Shortform Section (now first) -->
@@ -2627,38 +2687,41 @@
           <div class="grid category thumbnails hidden" data-aos="fade-right">
             <!-- First 6 visible on mobile -->
             <div class="project-card thumbnail-item">
-              <img src="assets/img/thumnail/IMG_1270.jfif" class="thumbnail" loading="lazy" alt="IMG_1270" />
+              <img src="assets/img/add thumbnail replace/bn.png" class="thumbnail" loading="lazy" alt="bn" />
             </div>
             <div class="project-card thumbnail-item">
-              <img src="assets/img/thumnail/download.jfif" class="thumbnail" loading="lazy" alt="download" />
+              <img src="assets/img/add thumbnail replace/f.png" class="thumbnail" loading="lazy" alt="f" />
             </div>
             <div class="project-card thumbnail-item">
-              <img src="assets/img/thumnail/images (9).jfif" class="thumbnail" loading="lazy" alt="images (9)" />
+              <img src="assets/img/add thumbnail replace/gh.png" class="thumbnail" loading="lazy" alt="gh" />
             </div>
             <div class="project-card thumbnail-item">
-              <img src="assets/img/thumnail/images (8).jfif" class="thumbnail" loading="lazy" alt="images (8)" />
+              <img src="assets/img/add thumbnail replace/ghh.png" class="thumbnail" loading="lazy" alt="ghh" />
             </div>
             <div class="project-card thumbnail-item">
-              <img src="assets/img/thumnail/images (7).jfif" class="thumbnail" loading="lazy" alt="images (7)" />
+              <img src="assets/img/add thumbnail replace/n.png" class="thumbnail" loading="lazy" alt="n" />
             </div>
             <div class="project-card thumbnail-item">
-              <img src="assets/img/thumnail/images (6).jfif" class="thumbnail" loading="lazy" alt="images (6)" />
+              <img src="assets/img/add thumbnail replace/pk.png" class="thumbnail" loading="lazy" alt="pk" />
             </div>
             <!-- Remaining hidden on mobile (shown via Load More) -->
             <div class="project-card thumbnail-item extra-thumbnail" style="display: none">
-              <img src="assets/img/thumnail/images (4).jfif" class="thumbnail" loading="lazy" alt="images (4)" />
+              <img src="assets/img/add thumbnail replace/r.png" class="thumbnail" loading="lazy" alt="r" />
             </div>
             <div class="project-card thumbnail-item extra-thumbnail" style="display: none">
-              <img src="assets/img/thumnail/images (3).jfif" class="thumbnail" loading="lazy" alt="images (3)" />
+              <img src="assets/img/add thumbnail replace/Red White Modern Investing Tips YouTube Thumbnail.png" class="thumbnail" loading="lazy" alt="Red White Modern Investing Tips YouTube Thumbnail" />
             </div>
             <div class="project-card thumbnail-item extra-thumbnail" style="display: none">
-              <img src="assets/img/thumnail/images (2).jfif" class="thumbnail" loading="lazy" alt="images (2)" />
+              <img src="assets/img/add thumbnail replace/ty.png" class="thumbnail" loading="lazy" alt="ty" />
             </div>
             <div class="project-card thumbnail-item extra-thumbnail" style="display: none">
-              <img src="assets/img/thumnail/images (1).jfif" class="thumbnail" loading="lazy" alt="images (1)" />
+              <img src="assets/img/add thumbnail replace/v.png" class="thumbnail" loading="lazy" alt="v" />
             </div>
             <div class="project-card thumbnail-item extra-thumbnail" style="display: none">
-              <img src="assets/img/thumnail/images.jfif" class="thumbnail" loading="lazy" alt="images" />
+              <img src="assets/img/add thumbnail replace/vb.png" class="thumbnail" loading="lazy" alt="vb" />
+            </div>
+            <div class="project-card thumbnail-item extra-thumbnail" style="display: none">
+              <img src="assets/img/add thumbnail replace/y.png" class="thumbnail" loading="lazy" alt="y" />
             </div>
           </div>
           <!-- Load More CTA for thumbnails -->
@@ -2668,6 +2731,90 @@
             style="display: none"
           >
             Load More
+          </button>
+
+          <!-- Graphic Design Section -->
+          <div class="grid category graphic hidden" data-aos="fade-right">
+            <div class="project-card graphic-item">
+              <img src="assets/img/graphindesing/Ca.png" class="thumbnail" loading="lazy" alt="Ca" />
+            </div>
+            <div class="project-card graphic-item">
+              <img src="assets/img/graphindesing/gf.png" class="thumbnail" loading="lazy" alt="gf" />
+            </div>
+            <div class="project-card graphic-item">
+              <img src="assets/img/graphindesing/hg.png" class="thumbnail" loading="lazy" alt="hg" />
+            </div>
+            <div class="project-card graphic-item">
+              <img src="assets/img/graphindesing/Red White Modern Investing Tips YouTube Thumbnail.png" class="thumbnail" loading="lazy" alt="Red White Modern Investing Tips YouTube Thumbnail" />
+            </div>
+            <div class="project-card graphic-item">
+              <img src="assets/img/graphindesing/Call or Send us DM on +254 799 150948.png" class="thumbnail" loading="lazy" alt="Call or Send us DM" />
+            </div>
+          </div>
+
+          <!-- Gaming Section (mirrors Shortform layout) -->
+          <div class="grid category gaming hidden" data-aos="zoom-in-up">
+            <div class="project-card phone-frame gaming-item">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/-B_Kt7szTHM?controls=1&rel=0"
+                frameborder="0" 
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="project-card phone-frame gaming-item">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/Rvhym2Yr5wY?controls=1&rel=0"
+                frameborder="0" 
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="project-card phone-frame gaming-item">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/j0FiqtF7cJg?controls=1&rel=0"
+                frameborder="0" 
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="project-card phone-frame gaming-item">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/fUPNolYdNZQ?controls=1&rel=0"
+                frameborder="0" 
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="project-card phone-frame gaming-item">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/GbZPHjEhYGk?controls=1&rel=0"
+                frameborder="0" 
+                loading="lazy"
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+          <!-- Load More CTA for gaming (mirrors shortform) -->
+          <button
+            id="gaming-load-more"
+            class="load-more-btn"
+            style="display: none"
+          >
+            Load mre
+          </button>
+          <!-- Desktop-only Load More CTA for gaming -->
+          <button
+            id="gaming-load-more-desktop"
+            class="load-more-btn"
+            style="display: none"
+          >
+            Load mre
           </button>
 
           <!-- Scripts -->
@@ -2711,10 +2858,17 @@
                 .querySelectorAll(".tabs button")
                 .forEach((btn) => btn.classList.remove("active"));
               document.querySelectorAll(".tabs button").forEach((btn) => {
-                if (btn.textContent.toLowerCase() === name) {
+                if (btn.getAttribute("data-category") === name) {
                   btn.classList.add("active");
                 }
               });
+              // Ensure Load More visibility updates for the active tab
+              try {
+                if (name === "shortform" && typeof updateShortform === "function") updateShortform();
+                if (name === "longform" && typeof updateLongform === "function") updateLongform();
+                if (name === "thumbnails" && typeof updateThumbnail === "function") updateThumbnail();
+                if (name === "gaming" && typeof updateGaming === "function") updateGaming();
+              } catch (e) {}
             }
           </script>
         </div>
@@ -5730,11 +5884,12 @@
         // Expose for tab switching
         return updateVisibility;
       }
-      let updateShortform, updateLongform, updateThumbnail, updateShortformDesktop;
+      let updateShortform, updateLongform, updateThumbnail, updateGaming, updateShortformDesktop;
       document.addEventListener("DOMContentLoaded", function () {
         updateShortform = handleSectionLoadMore("shortform");
         updateLongform = handleSectionLoadMore("longform");
         updateThumbnail = handleSectionLoadMore("thumbnail");
+        updateGaming = handleSectionLoadMore("gaming");
         // Desktop-only Load More for shortform
         function handleShortformDesktop() {
           const grid = document.querySelector(".category.shortform");
